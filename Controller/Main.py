@@ -1,0 +1,2 @@
+currentCharacters = []
+deadCharacters = []
