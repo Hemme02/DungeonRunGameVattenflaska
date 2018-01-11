@@ -5,7 +5,7 @@ from Model.classWizard import Wizard
 from Model.classKnight import Knight
 from Model.classThief import Thief
 from Controller.SaveGame import save_game_current
-
+import time
 
 
 def menuToStartGame():
@@ -74,9 +74,27 @@ def createMenu (_newGame):
             print(" Try again ! ")
 
 
+def showInToWizard():
+    print('Wizard  ,    _   Stats  ')
+    time.sleep(0.3)
+    print('       /|   | |  initiative = 6   ')
+    time.sleep(0.3)
+    print('      _/_\_  >_< endurance = 4   ')
+    time.sleep(0.3)
+    print("     .-\-/.   |  attack = 9 ")
+    time.sleep(0.3)
+    print("    /  | | \_ |  agility = 5  ")
+    time.sleep(0.3)
+    print("    \ \| |\__(/")
+    time.sleep(0.3)
+    print("    /(`---')  |   ")
+    print("   / /     \  | ")
+    print("_.'  \'-'  /  |   ")
+    print("`----'`=-='   ' ")
+    time.sleep(0.3)
+    print("*****Passive Ability")
+    print("Light Rail. The wizard can make the monster blind and has")
+    print("therefore always 80% chance of flying from battles.")
 
-
-
-
-
+showInToWizard()
 
