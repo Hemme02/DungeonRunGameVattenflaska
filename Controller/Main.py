@@ -1,6 +1,6 @@
-from Controller.LoadGame import load_game_characters
+
+from Controller.Game import Game
 from Controller.Welcome import welcome
 
-currentCharacters, deadCharacters = load_game_characters()
-welcome()
-
+newGame = Game()
+welcome(newGame)
