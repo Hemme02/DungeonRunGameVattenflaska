@@ -9,7 +9,7 @@ from Controller.SaveGame import save_game_current
 
 
 def menuToStartGame():
-    print ("\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Theif \n""4. Show more info \n""5. Go back to start menu \n""6. Close \n")
+    print ("\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n""4. Show more info \n""5. Go back to start menu \n""6. Close \n")
     return
 
 
@@ -69,6 +69,8 @@ def createMenu (_newGame):
         # Close
         elif choice_start_game == "6":
             exit()
+
+
 
         else:
             print(" Try again ! ")

@@ -41,7 +41,9 @@ def welcome(newGame):
             break
             #Load saved character
         elif choice == "3":
-            exit()
+
+                exit()
+
 
         elif choice == "4":
             welcomeMenu()

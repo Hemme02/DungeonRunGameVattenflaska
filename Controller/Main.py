@@ -40,8 +40,14 @@ def welcome():
         elif choice == "2":
             break
             #Load saved character
+
         elif choice == "3":
-            exit()
+            answer = input("Do you really want to exit?:")
+            if answer.lower() == ("no"):
+                print("Ok, carry on then")
+            if answer.lower() == ("yes"):
+                exit()
+
 
         elif choice == "4":
             welcomeMenu()
@@ -106,7 +112,12 @@ def createMenu (_newGame):
 
         # Close
         elif choice_start_game == "6":
-            exit()
+            answer = input("Do you really want to exit?:")
+            if answer.lower() == ("no"):
+                print("Ok, carry on then")
+            if answer.lower() == ("yes"):
+                exit()
+
 
 
 
