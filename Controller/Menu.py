@@ -1,48 +1,49 @@
 # Menu to start game
 
-def menuToStartGame ():
+#lägg till nammn + funk create character där den sparas
 
+def menuToStartGame ():
     print ("\nSelect your character:\n" "1. Mage \n""2. Warrior  \n""3. Theif \n""4. Show more info \n""5. Close \n")
     return
 
+def createMenu ():
+
+    print ("Start the adventure:")
+    print("Menu")
+    menuToStartGame ()
+
+    while True:
+
+        try:
+            choice_start_game = input("Your choice: ")
+
+            # 1.Mage
+            if choice_start_game == 1:
+                break
+
+            # 2.Warrior
+            elif choice_start_game == 2:
+                break
+
+            # 3.Theif
+            elif choice_start_game == 3:
+                break
 
 
-print ("Start the adventure:")
-print("Menu")
-menuToStartGame ()
+            # 4.Show more info about characters
+            elif choice_start_game == 4:
+                break
 
-while True:
+            # Close
+            elif choice_start_game == 5:
+                menuToStartGame()
 
-    try:
-        choice_start_game = input("Your choice: ")
+            else:
+                print(" Try again ! ")
 
-        # 1.Mage
-        if choice_start_game == 1:
-            break
-
-        # 2.Warrior
-        elif choice_start_game == 2:
-            break
-
-        # 3.Theif
-        elif choice_start_game == 3:
-            break
-
-
-        # 4.Show more info about characters
-        elif choice_start_game == 4:
-            break
-
-        # Close
-        elif choice_start_game == 5:
-            menuToStartGame()
-
-        else:
-            print(" Try again ! ")
-
-    except:
-        print(" Try again! ")
-        print(" ")
+        except:
+            print(" Try again! ")
+            print(" ")
 
 
 
