@@ -15,6 +15,3 @@ def load_game_characters():
         dead_char = []
 
     return(current_char, dead_char);
-
-
-print(load_game_characters())
