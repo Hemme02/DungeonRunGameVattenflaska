@@ -25,11 +25,12 @@ def welcomeMenu ():
     print('**** Developers: Jens, Belkiz, Johanna, Usko, Sanju and Simon. *****')
     print('______________________________________________________________________________________________')
     time.sleep(2.5)
-    clear_screen()
+
     welcome()
     return
 
 def welcome():
+    clear_screen()
     print( "\nDungeon Run\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Close program\n")
 
     while True:
@@ -39,18 +40,17 @@ def welcome():
         elif choice == "2":
             select_character()
         elif choice == "3":
-            exit()
-            answer = input("Do you really want to exit?:")
-            if answer.lower() == ("no"):
-                print("Ok, carry on then")
+            answer = input("Do you really want to exit? yes/no:")
             if answer.lower() == ("yes"):
                 sys.exit()
-
+            else:
+                welcome()
 
         elif choice == "4":
             welcomeMenu()
         else:
             print ("\nWrong number. Choose one between 1-3")
+            input("Press any key to continue")
             welcome()
 
 def menuToStartGame():
@@ -59,24 +59,29 @@ def menuToStartGame():
     return
 
 def createCharacter(number):
-    character_name = input("Your name for the character: ")
+    while True:
+        character_name = input("Your name for the character: ")
+        name_occupied = True
+        for character in (newGame.currentCharacters):
+            if character.name == character_name:
+                print ("Name occupied. Try again")
+                name_occupied = False
+                createCharacter(number)
+                break
+        break
 
-    for character in (newGame.currentCharacters):
-        if character.name == character_name:
-            print ("Name occupied. Try again")
-            createCharacter(number)
+    if name_occupied:
+        if number =="1":
+            new_wizard = Wizard(character_name)
+            newGame.add_character(new_wizard)
 
-    if number =="1":
-        new_wizard = Wizard(character_name)
-        newGame.add_character(new_wizard)
+        elif number =="2":
+            new_Knight = Knight(character_name)
+            newGame.add_character(new_Knight)
 
-    elif number =="2":
-        new_Knight = Knight(character_name)
-        newGame.add_character(new_Knight)
-
-    elif number == "3":
-        new_thief = Thief(character_name)
-        newGame.add_character(new_thief)
+        elif number == "3":
+            new_thief = Thief(character_name)
+            newGame.add_character(new_thief)
 
 def createMenu ():
     menuToStartGame()
@@ -106,11 +111,11 @@ def createMenu ():
 
         # Close
         elif choice_start_game == "6":
-            answer = input("Do you really want to exit?:")
-            if answer.lower() == ("no"):
-                print("Ok, carry on then")
+            answer = input("Do you really want to exit? yes/no:")
             if answer.lower() == ("yes"):
                 sys.exit()
+            else:
+                welcome()
 
 def select_character():
     clear_screen()
@@ -146,7 +151,7 @@ def more_info():
 
     def showInToWizard():
         clear_screen()
-        print('Wizard  ,    _   Stats  ')
+        print('WIZARD  ,    _   Stats  ')
         time.sleep(0.3)
         print('       /|   | |  initiative = 6   ')
         time.sleep(0.3)
@@ -170,7 +175,7 @@ def more_info():
         time.sleep(0.3)
         print("Light Rail. The wizard can make the monster blind and has")
         time.sleep(0.3)
-        print("therefore always 80% chance of flying from battles.")
+        print("therefore always 80% chance of fleeing from battles.")
         input("Press key to continue")
         more_info()
 
@@ -202,21 +207,21 @@ def more_info():
         clear_screen()
         print('THIEF//|\  ___Stats___')
         time.sleep(0.3)
-        print("    //&')  Initiative = 7 ")
+        print("     //&')  Initiative = 7 ")
         time.sleep(0.3)
-        print('     '')( ) Endurance = 5')
+        print('      '')( ) Endurance = 5')
         time.sleep(0.3)
-        print('     ((_)  Attack = 5')
+        print('      ((_)  Attack = 5')
         time.sleep(0.3)
-        print('     )( (  Agility = 7')
+        print('      )( (  Agility = 7')
         time.sleep(0.3)
-        print(' <###(](=M=)')
+        print('  <###(](=M=)')
         time.sleep(0.3)
-        print('     (()   ')
+        print('      (()   ')
         time.sleep(0.3)
-        print('     (( ) ')
+        print('      (( ) ')
         time.sleep(0.3)
-        print('     ((__,) ')
+        print('      ((__,) ')
         time.sleep(0.3)
         print('*****Passive Ability*****')
         time.sleep(0.3)
@@ -235,7 +240,7 @@ def more_info():
         createMenu()
     else:
         print("Wrong choice")
-
+        more_info()
 
 currentCharacters, deadCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters)
