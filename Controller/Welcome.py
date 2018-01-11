@@ -1,5 +1,3 @@
-#lägg till clear funk
-#smile
 from Controller.Menu import createMenu
 from Controller.Clear import clear_screen
 
@@ -27,6 +25,7 @@ def welcomeMenu ():
     return
 
 def welcome(newGame):
+    newGameInput = newGame
     print ('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
     time.sleep(0.5)
     clear_screen()
@@ -35,12 +34,14 @@ def welcome(newGame):
     while True:
         choice = input("Your choice: ")
         if choice == "1":
-            createMenu(newGame)
+            createMenu(newGameInput)
         elif choice == "2":
             break
             #Load saved character
         elif choice == "3":
-            exit()
+
+                exit()
+
 
         elif choice == "4":
             welcomeMenu()

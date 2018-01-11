@@ -9,7 +9,7 @@ import time
 
 
 def menuToStartGame():
-    print ("\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Theif \n""4. Show more info \n""5. Go back to start menu \n""6. Close \n")
+    print ("\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n""4. Show more info \n""5. Go back to start menu \n""6. Close \n")
     return
 
 
@@ -35,11 +35,7 @@ def createCharacter(number, newGame):
 
 
 def createMenu (_newGame):
-
-    print ("Start the adventure:")
-    print("Menu")
     menuToStartGame()
-
 
     while True:
 
@@ -69,6 +65,8 @@ def createMenu (_newGame):
         # Close
         elif choice_start_game == "6":
             exit()
+
+
 
         else:
             print(" Try again ! ")
