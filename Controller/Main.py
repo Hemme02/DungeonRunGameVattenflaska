@@ -1,3 +1,5 @@
+import sys
+
 from Controller.Game import Game
 from Controller.LoadGame import load_game_characters
 from Controller.Menu import createMenu
@@ -46,7 +48,7 @@ def welcome():
             if answer.lower() == ("no"):
                 print("Ok, carry on then")
             if answer.lower() == ("yes"):
-                exit()
+                sys.exit()
 
 
         elif choice == "4":
@@ -116,7 +118,7 @@ def createMenu (_newGame):
             if answer.lower() == ("no"):
                 print("Ok, carry on then")
             if answer.lower() == ("yes"):
-                exit()
+                sys.exit()
 
 
 
