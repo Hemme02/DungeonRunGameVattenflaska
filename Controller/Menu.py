@@ -35,11 +35,7 @@ def createCharacter(number, newGame):
 
 
 def createMenu (_newGame):
-
-    print ("Start the adventure:")
-    print("Menu")
     menuToStartGame()
-
 
     while True:
 

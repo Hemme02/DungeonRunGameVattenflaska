@@ -1,7 +1,6 @@
 import pickle
 import io
 
-
 def load_game_characters():
 
     try:

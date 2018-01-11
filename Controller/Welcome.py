@@ -1,5 +1,3 @@
-#lägg till clear funk
-#smile
 from Controller.Menu import createMenu
 from Controller.Clear import clear_screen
 
