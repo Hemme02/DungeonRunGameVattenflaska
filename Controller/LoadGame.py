@@ -14,4 +14,4 @@ def load_game_characters():
     except(io.UnsupportedOperation, FileNotFoundError):
         dead_char = []
 
-    return(current_char, dead_char);
+    return(current_char, dead_char)

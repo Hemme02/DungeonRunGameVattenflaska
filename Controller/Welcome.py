@@ -23,7 +23,7 @@ def welcomeMenu ():
     print('______________________________________________________________________________________________')
     time.sleep(2.5)
     clear_screen()
-    print ("\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Close program\n")
+    print ("\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Close program\n4. Show menu\n")
     return
 
 def welcome(newGame):
@@ -40,7 +40,8 @@ def welcome(newGame):
             break
             #Load saved character
         elif choice == "3":
-            break
+            exit()
+
         elif choice == "4":
             welcomeMenu()
         else:
