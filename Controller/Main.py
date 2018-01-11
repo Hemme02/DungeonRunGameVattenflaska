@@ -1,13 +1,12 @@
 from Controller.Game import Game
 from Controller.LoadGame import load_game_characters
-from Controller.Menu import createMenu
 from Controller.Clear import clear_screen
 from Model.classWizard import Wizard
 from Model.classKnight import Knight
 from Model.classThief import Thief
 
 import time
-
+import sys
 
 def welcomeMenu ():
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
@@ -55,7 +54,8 @@ def welcome():
             welcome()
 
 def menuToStartGame():
-    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Theif \n\n""Or""\n""4. Show more info \n""5. Go back to start menu \n""6. Close program \n")
+    clear_screen()
+    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n\n""Or""\n""4. Show more info \n""5. Go back to start menu \n""6. Close program \n")
     return
 
 def createCharacter(number):
@@ -98,7 +98,7 @@ def createMenu ():
 
         # 4.Show more info about characters
         elif choice_start_game == "4":
-            print(" Info ")
+            more_info()
 
        # Back to start menu
         elif choice_start_game == "5":
@@ -113,6 +113,7 @@ def createMenu ():
                 sys.exit()
 
 def select_character():
+    clear_screen()
     if len(newGame.currentCharacters) != 0:
         print("Select character:")
         num = 1
@@ -137,6 +138,103 @@ def select_character():
             print("Wrong choice")
             welcomeMenu()
 
+def more_info():
+    clear_screen()
+    print("Select which character you want to know more of:")
+    print("\n 1. Wizard\n 2. Knight\n 3. Thief\n 4. Go back")
+    info_choice = input("Your choice: ")
+
+    def showInToWizard():
+        clear_screen()
+        print('Wizard  ,    _   Stats  ')
+        time.sleep(0.3)
+        print('       /|   | |  initiative = 6   ')
+        time.sleep(0.3)
+        print('      _/_\_  >_< endurance = 4   ')
+        time.sleep(0.3)
+        print("     .-\-/.   |  attack = 9 ")
+        time.sleep(0.3)
+        print("    /  | | \_ |  agility = 5  ")
+        time.sleep(0.3)
+        print("    \ \| |\__(/")
+        time.sleep(0.3)
+        print("    /(`---')  |   ")
+        time.sleep(0.3)
+        print("   / /     \  | ")
+        time.sleep(0.3)
+        print("_.'  \'-'  /  |   ")
+        time.sleep(0.3)
+        print("`----'`=-='   ' ")
+        time.sleep(0.3)
+        print("*****Passive Ability")
+        time.sleep(0.3)
+        print("Light Rail. The wizard can make the monster blind and has")
+        time.sleep(0.3)
+        print("therefore always 80% chance of flying from battles.")
+        input("Press key to continue")
+        more_info()
+
+    def showInfoKnight():
+        clear_screen()
+        print('    KNIGHT   /    ___Stats___')
+        time.sleep(0.3)
+        print('      ,~~   /     Initiative = 5  ')
+        time.sleep(0.3)
+        print('  _  <=)  _/_     Endurance = 9')
+        time.sleep(0.3)
+        print(' /I\.="==.{>      Attack = 6')
+        time.sleep(0.3)
+        print(" \I/-\T/-         Agility = 4")
+        time.sleep(0.3)
+        print('     /_\    _   ')
+        time.sleep(0.3)
+        print("   _// \\\_  ")
+        time.sleep(0.3)
+        print('*****Passive Ability*****')
+        time.sleep(0.3)
+        print('Shield block: The knight always blocks the first attack in a fight with his shield')
+        print('')
+        time.sleep(1)
+        input("Press key to continue")
+        more_info()
+
+    def showInfoThief():
+        clear_screen()
+        print('THIEF//|\  ___Stats___')
+        time.sleep(0.3)
+        print("    //&')  Initiative = 7 ")
+        time.sleep(0.3)
+        print('     '')( ) Endurance = 5')
+        time.sleep(0.3)
+        print('     ((_)  Attack = 5')
+        time.sleep(0.3)
+        print('     )( (  Agility = 7')
+        time.sleep(0.3)
+        print(' <###(](=M=)')
+        time.sleep(0.3)
+        print('     (()   ')
+        time.sleep(0.3)
+        print('     (( ) ')
+        time.sleep(0.3)
+        print('     ((__,) ')
+        time.sleep(0.3)
+        print('*****Passive Ability*****')
+        time.sleep(0.3)
+        print('Critical hit: The thief has a 25% chance to hit a critical hit which deals double damage.')
+        time.sleep(1)
+        input("Press key to continue")
+        more_info()
+
+    if info_choice == "1":
+        showInToWizard()
+    elif info_choice == "2":
+        showInfoKnight()
+    elif info_choice == "3":
+        showInfoThief()
+    elif info_choice == "4":
+        createMenu()
+    else:
+        print("Wrong choice")
 
 
 currentCharacters, deadCharacters = load_game_characters()

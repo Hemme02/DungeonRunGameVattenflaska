@@ -98,6 +98,67 @@ def showInToWizard():
     print("Light Rail. The wizard can make the monster blind and has")
     time.sleep(0.3)
     print("therefore always 80% chance of flying from battles.")
+    try:
+        select = int(input("Press 1 to return "))
+    except ValueError:
+        print('Error')
+    if select == 1:
+        createMenu()
 
-showInToWizard()
+def showInfoKnight():
+    print('    KNIGHT   /    ___Stats___')
+    time.sleep(0.3)
+    print('      ,~~   /     Initiative = 5  ')
+    time.sleep(0.3)
+    print('  _  <=)  _/_     Endurance = 9')
+    time.sleep(0.3)
+    print(' /I\.="==.{>      Attack = 6')
+    time.sleep(0.3)
+    print(" \I/-\T/-         Agility = 4")
+    time.sleep(0.3)
+    print('     /_\    _   ')
+    time.sleep(0.3)
+    print("   _// \\\_  ")
+    time.sleep(0.3)
+    print('*****Passive Ability*****')
+    time.sleep(0.3)
+    print('Shield block: The knight always blocks the first attack in a fight with his shield')
+    print('')
+    time.sleep(1)
+    try:
+        select = int(input(" Press 1 to return "))
+    except ValueError:
+        print('Error')
+    if select == 1:
+        createMenu()
+
+def showInfoThief():
+    print('THIEF//|\  ___Stats___')
+    time.sleep(0.3)
+    print("    //&')  Initiative = 7 ")
+    time.sleep(0.3)
+    print('     '')( ) Endurance = 5')
+    time.sleep(0.3)
+    print('     ((_)  Attack = 5')
+    time.sleep(0.3)
+    print('     )( (  Agility = 7')
+    time.sleep(0.3)
+    print(' <###(](=M=)')
+    time.sleep(0.3)
+    print('     (()   ')
+    time.sleep(0.3)
+    print('     (( ) ')
+    time.sleep(0.3)
+    print('     ((__,) ')
+    time.sleep(0.3)
+    print('*****Passive Ability*****')
+    time.sleep(0.3)
+    print('Critical hit: The thief has a 25% chance to hit a critical hit which deals double damage.')
+    time.sleep(1)
+    try:
+        select = int(input("Press 1 to return "))
+    except ValueError:
+        print('Error')
+    if select == 1:
+        createMenu()
 
