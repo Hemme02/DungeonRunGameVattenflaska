@@ -1,4 +1,4 @@
-from Controller.characterClass import Character
+from Model.characterClass import Character
 
 
 class Thief(Character):
