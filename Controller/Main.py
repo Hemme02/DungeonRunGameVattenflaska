@@ -38,10 +38,7 @@ def welcome():
         if choice == "1":
             createMenu()
         elif choice == "2":
-            break #Load saved character
-            break
-            #Load saved character
-
+            select_character()
         elif choice == "3":
             exit()
             answer = input("Do you really want to exit?:")
@@ -114,6 +111,32 @@ def createMenu ():
                 print("Ok, carry on then")
             if answer.lower() == ("yes"):
                 sys.exit()
+
+def select_character():
+    if len(newGame.currentCharacters) != 0:
+        print("Select character:")
+        num = 1
+        for character in newGame.currentCharacters:
+            print(str(num)+":  "+character.name)
+            num += 1
+        print(str(num) + ":  Go Back")
+        try:
+            while True:
+                character_choice =int(input("\nYour choice: "))
+                if character_choice > (len(newGame.currentCharacters)+2) or character_choice <= 0:
+                    print("Wrong choice")
+                    continue
+                elif(character_choice == len(newGame.currentCharacters)+1):
+                    welcomeMenu()
+                else:
+                    newGame.active_character = newGame.currentCharacters[character_choice-1]
+                    print(newGame.active_character.name)
+
+
+        except(ValueError):
+            print("Wrong choice")
+            welcomeMenu()
+
 
 
 currentCharacters, deadCharacters = load_game_characters()

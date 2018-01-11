@@ -1,8 +1,8 @@
-from Controller.LoadGame import load_game_characters
 from Controller.SaveGame import save_game_current
 
 class Game:
 
+    active_character = None
     currentCharacters = []
     deadCharacters = []
     def __init__(self, currentCharacters, deadCharacters):
