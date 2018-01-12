@@ -92,7 +92,7 @@ def createCharacter(number):
             newGame.add_character(new_thief)
             print("Character created. Quiting")
             mapMenu(character_name, "3")
-
+            print("")
 def createMenu ():
     menuToStartGame()
 

@@ -1,6 +1,5 @@
 class Character:
 
-
     def __init__(self, name_, initiative_, endurance_, attack_, agility_):
         self.name = name_
         self.initiative = initiative_
