@@ -145,7 +145,7 @@ def select_character():
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
-                    exit()
+                    mapMenu()
 
         except(ValueError):
             print("Wrong choice")
@@ -249,6 +249,52 @@ def more_info():
     else:
         print("Wrong choice")
         more_info()
+
+# Menu: You are this character,  Which size on map do you want to have?
+def mapMenu():
+    clear_screen()
+    print("\nYou are this character" + " , select size for the map: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""4. Show more info about the map \n""5. Select start position  \n""6. Exit \n")
+    return
+
+mapMenu()
+
+while True:
+
+    choice_size_map = input("Your choice: ")
+
+    # Size small
+    if choice_size_map == "1":
+        break
+
+    # Size medium
+    elif choice_size_map == "2":
+        break
+
+    # Size large
+    elif choice_size_map == "3":
+        break
+
+    # Show more info about the map
+    elif choice_size_map == "4":
+        print("Player can select the size of the map for new adventure as follows, [X] = one room on map,Small = 4x4, Medium = 5x5, Large = 8x8")
+        break
+
+
+    # Select start position
+    elif choice_size_map == "5":
+        break
+
+    # Close
+    elif choice_size_map == "6":
+        result = finish()
+        if result == False:
+            welcome()
+
+    else:
+        print("Try again")
+        input("Press any key to continue")
+        welcome()
+
 
 def finish_dungeon():
     print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
