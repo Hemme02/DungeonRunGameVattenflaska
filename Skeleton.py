@@ -1,6 +1,6 @@
 from characterClass import Character
 
-class Skelaton(Character):
+class Skeleton(Character):
     def __init__(self):
         initiative_ = 4
         endurance_ = 2
