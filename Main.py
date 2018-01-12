@@ -251,6 +251,26 @@ def more_info():
         print("Wrong choice")
         more_info()
 
+def finish_dungeon():
+    print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
+    newGame.active_character.earn_treasure()
+    print("Your total wealth are now %d gold!".format(newGame.active_character.treasure_saved))
+    input("\n\nPress key to continue")
+    while True:
+        clear_screen()
+        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit game")
+        end_game_choice = input("Your choice :")
+        if end_game_choice == "1":
+            pass
+            #TODO choose mapsize menu
+        elif end_game_choice == "2":
+            newGame.active_character = None
+        elif end_game_choice == "3":
+            #TODO exit function here
+            sys.exit()
+        else:
+           print("Wrong choice")
+
 currentCharacters, deadCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters)
 welcomeMenu()

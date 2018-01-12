@@ -1,7 +1,9 @@
 from SaveGame import save_game_current
+from classWizard import Wizard
+
 
 class Game:
-    active_character = None
+    active_character = Wizard("Kim")
     currentCharacters = []
     deadCharacters = []
 
