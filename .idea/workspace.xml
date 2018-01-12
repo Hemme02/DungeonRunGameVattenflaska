@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="921720d1-7bf3-4bf9-8766-b7ee341679b9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_2.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roomClass.py" afterPath="$PROJECT_DIR$/roomClass.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -314,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515765667208</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created a room class and a room generator.">
+      <created>1515765926013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1515765926013</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
