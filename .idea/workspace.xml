@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="921720d1-7bf3-4bf9-8766-b7ee341679b9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roomClass.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roomGenerator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DungeonRunGameVattenflaska.iml" afterPath="$PROJECT_DIR$/.idea/DungeonRunGameVattenflaska.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_12_18_2_59_PM__Default_2.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roomClass.py" afterPath="$PROJECT_DIR$/roomClass.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,17 +52,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roomClass.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="roomClass.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roomClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="72">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roomGenerator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="roomGenerator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roomGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
@@ -151,6 +148,7 @@
         <option value="$PROJECT_DIR$/SaveGame.py" />
         <option value="$PROJECT_DIR$/LoadGame.py" />
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/roomClass.py" />
       </list>
     </option>
   </component>
@@ -309,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515679842052</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created a room class and a room generator.">
+      <created>1515765667208</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1515765667208</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -382,7 +387,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Alot of changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alot of changes" />
+    <MESSAGE value="Created a room class and a room generator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a room class and a room generator." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -726,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roomClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roomGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -741,6 +739,14 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roomClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
