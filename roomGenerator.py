@@ -32,40 +32,43 @@ class collectionOfObjects(Room):
 
 
     def monsterGenerator(self): # vi kan optimera random generatorn tror vi.
-        randomizer1 = random.randint(1,100)
-        randomizer2 = random.randint(1,100)
-        randomizer3 = random.randint(1,100)
-        randomizer4 = random.randint(1,100)
 
-        if randomizer1 <= 5:
+        if self.Randomizer() <= 5:
             self.aliveMonsters.append(Troll())
-        if randomizer2 <= 15:
+
+        if self.Randomizer() <= 15:
             self.aliveMonsters.append(Skeleton())
-        if randomizer3 >= 10:
+
+        if self.Randomizer() >= 10:
             self.aliveMonsters.append(Orc)
-        if randomizer4 <= 20:
+
+        if self.Randomizer() <= 20:
             self.aliveMonsters.append(GiantSpider)
 
         return self.aliveMonsters
 
 
     def itemGenerator(self):# vi kan optimera random generatorn tror vi.
-        randomizer1 = random.randint(1, 100)
-        randomizer2 = random.randint(1, 100)
-        randomizer3 = random.randint(1, 100)
-        randomizer4 = random.randint(1, 100)
 
-        if randomizer1 <= 40:
+        if self.Randomizer() <= 40:
             self.existingItems.append(LooseCoins())
-        if randomizer2 <= 20:
+
+        if self.Randomizer() <= 20:
             self.existingItems.append(MoneyBag())
-        if randomizer3 <= 15:
+
+        if self.Randomizer() <= 15:
             self.existingItems.append(GoldJewelry())
-        if randomizer4 <= 10:
+
+        if self.Randomizer() <= 10:
             self.existingItems.append(GemStone())
-        if randomizer5 <= 5:
+
+        if self.Randomizer() <= 5:
             self.existingItems(SmallTreasureChest())
 
         return self.existingItems
 
 
+    def Randomizer(self):
+        randomizer = random.randint(1,100)
+
+        return randomizer
