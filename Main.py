@@ -28,6 +28,13 @@ def welcomeMenu ():
     welcome()
     return
 
+def finish():
+    answer = input("Do you really want to exit? yes/no:")
+    if answer.lower() == ("yes"):
+        sys.exit()
+    else:
+        return False
+
 def welcome():
     clear_screen()
     print( "\nDungeon Run\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Close program\n")
@@ -37,14 +44,12 @@ def welcome():
         if choice == "1":
             createMenu()
         elif choice == "2":
+
             select_character()
         elif choice == "3":
-            answer = input("Do you really want to exit? yes/no:")
-            if answer.lower() == ("yes"):
-                sys.exit()
-            else:
+            result = finish()
+            if result == False:
                 welcome()
-
         elif choice == "4":
             welcomeMenu()
         else:
@@ -62,7 +67,7 @@ def createCharacter(number):
         character_name = input("Your name for the character: ")
         name_occupied = True
         for character in (newGame.currentCharacters):
-            if character.name == character_name:
+            if character.name == character_name.lower:
                 print ("Name occupied. Try again")
                 name_occupied = False
                 createCharacter(number)
@@ -73,19 +78,19 @@ def createCharacter(number):
         if number =="1":
             new_wizard = Wizard(character_name)
             newGame.add_character(new_wizard)
-            print("Charachter created. Quiting")
+            print("Character created. Quiting")
             exit()
 
         elif number =="2":
             new_Knight = Knight(character_name)
             newGame.add_character(new_Knight)
-            print("Charachter created. Quiting")
+            print("Character created. Quiting")
             exit()
 
         elif number == "3":
             new_thief = Thief(character_name)
             newGame.add_character(new_thief)
-            print("Charachter created. Quiting")
+            print("Character created. Quiting")
             exit()
 
 def createMenu ():
@@ -116,10 +121,8 @@ def createMenu ():
 
         # Close
         elif choice_start_game == "6":
-            answer = input("Do you really want to exit? yes/no:")
-            if answer.lower() == ("yes"):
-                sys.exit()
-            else:
+            result = finish()
+            if result == False:
                 welcome()
 
 def select_character():
@@ -143,7 +146,6 @@ def select_character():
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
                     exit()
-
 
         except(ValueError):
             print("Wrong choice")
