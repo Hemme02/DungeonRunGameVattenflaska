@@ -254,6 +254,7 @@ def more_info():
 def finish_dungeon():
     print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
     newGame.active_character.earn_treasure()
+    newGame.save_characters()
     print("Your total wealth are now %d gold!".format(newGame.active_character.treasure_saved))
     input("\n\nPress key to continue")
     while True:

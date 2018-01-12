@@ -1,4 +1,5 @@
 from SaveGame import save_game_current
+from SaveGame import save_game_dead
 from classWizard import Wizard
 
 
@@ -14,3 +15,7 @@ class Game:
     def add_character(self, newChar):
         self.currentCharacters.append(newChar)
         save_game_current(self.currentCharacters)
+
+    def save_characters(self):
+        save_game_current(self.currentCharacters)
+        save_game_dead(self.deadCharacters)
