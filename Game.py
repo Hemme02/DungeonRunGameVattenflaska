@@ -1,4 +1,4 @@
-from Controller.SaveGame import save_game_current
+from SaveGame import save_game_current
 
 class Game:
     active_character = None

@@ -1,11 +1,13 @@
 # Menu to start game
 
 
-from Model.classWizard import Wizard
-from Model.classKnight import Knight
-from Model.classThief import Thief
-from Controller.SaveGame import save_game_current
 import time
+
+from classKnight import Knight
+from classWizard import Wizard
+
+from SaveGame import save_game_current
+from classThief import Thief
 
 
 def menuToStartGame():

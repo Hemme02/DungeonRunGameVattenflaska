@@ -1,12 +1,14 @@
-from Controller.Game import Game
-from Controller.LoadGame import load_game_characters
-from Controller.Clear import clear_screen
-from Model.classWizard import Wizard
-from Model.classKnight import Knight
-from Model.classThief import Thief
-
-import time
 import sys
+import time
+
+from Game import Game
+from LoadGame import load_game_characters
+from classKnight import Knight
+from classWizard import Wizard
+
+from Clear import clear_screen
+from classThief import Thief
+
 
 def welcomeMenu ():
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
@@ -74,14 +76,20 @@ def createCharacter(number):
         if number =="1":
             new_wizard = Wizard(character_name)
             newGame.add_character(new_wizard)
+            print("Charachter created. Quiting")
+            exit()
 
         elif number =="2":
             new_Knight = Knight(character_name)
             newGame.add_character(new_Knight)
+            print("Charachter created. Quiting")
+            exit()
 
         elif number == "3":
             new_thief = Thief(character_name)
             newGame.add_character(new_thief)
+            print("Charachter created. Quiting")
+            exit()
 
 def createMenu ():
     menuToStartGame()
@@ -136,7 +144,8 @@ def select_character():
                     welcomeMenu()
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
-                    print(newGame.active_character.name)
+                    print("Character selected:" + newGame.active_character.name)
+                    exit()
 
 
         except(ValueError):
