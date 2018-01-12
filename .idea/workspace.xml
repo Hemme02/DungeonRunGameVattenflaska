@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="921720d1-7bf3-4bf9-8766-b7ee341679b9" name="Default" comment="Gold items">
+    <list default="true" id="921720d1-7bf3-4bf9-8766-b7ee341679b9" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Controller/ClassMap.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Goldclass.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Loose slings.py" />
@@ -1134,7 +1134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515761314780</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Gold items">
+      <created>1515766377760</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1515766377760</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1184,7 +1191,8 @@
     <MESSAGE value="Added treasure to player characters" />
     <MESSAGE value="Added function to player characters" />
     <MESSAGE value="Fixed endgame save and menu for restart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed endgame save and menu for restart" />
+    <MESSAGE value="Gold items" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gold items" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
