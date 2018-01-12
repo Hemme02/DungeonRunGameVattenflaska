@@ -23,7 +23,7 @@ def welcomeMenu ():
     time.sleep(0.5)
     print('**** Developers: Jens, Belkiz, Johanna, Usko, Sanju and Simon. *****')
     print('______________________________________________________________________________________________')
-    time.sleep(2.5)
+    time.sleep(0.5)
     input("Press any key to start the game")
     welcome()
     return
