@@ -1,14 +1,11 @@
 import sys
 import time
-
 from Game import Game
 from LoadGame import load_game_characters
 from classKnight import Knight
 from classWizard import Wizard
-
 from Clear import clear_screen
 from classThief import Thief
-
 
 def welcomeMenu ():
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
@@ -27,7 +24,7 @@ def welcomeMenu ():
     print('**** Developers: Jens, Belkiz, Johanna, Usko, Sanju and Simon. *****')
     print('______________________________________________________________________________________________')
     time.sleep(2.5)
-
+    input("Press any key to start the game")
     welcome()
     return
 
