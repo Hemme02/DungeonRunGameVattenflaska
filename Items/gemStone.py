@@ -1,6 +1,6 @@
 from Items.itemClass import  Items
 
-class Gemstone(Items):
+class gemStone(Items):
     def __init__(self):
         gold_ = 14
         rarity_ = 10

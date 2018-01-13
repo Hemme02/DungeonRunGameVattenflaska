@@ -1,6 +1,6 @@
 from Items.itemClass import Items
 
-class LooseCoins(Items):
+class looseCoins(Items):
 
     def __init__(self):
         gold_ = 2
