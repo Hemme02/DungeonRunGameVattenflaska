@@ -12,7 +12,7 @@ from Items.moneyBag import moneyBag
 from Items.smallTreasureChest import smallTreasureChest
 
 
-class collectionOfObjects(Room):
+class collectionOfObjects:
     def __init__(self):
         self.aliveMonsters = []
         self.existingItems = []
