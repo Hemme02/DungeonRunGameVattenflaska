@@ -4,6 +4,13 @@ from Skeleton import Skeleton
 from Orc import Orc
 from GiantSpider import GiantSpider
 import random
+from Items.itemClass import  Items
+from Items.gemStone import gemStone
+from Items.goldJewelry import goldJewelry
+from Items.looseCoins import looseCoins
+from Items.moneyBag import moneyBag
+from Items.smallTreasureChest import smallTreasureChest
+
 
 class collectionOfObjects(Room):
     def __init__(self):
@@ -51,19 +58,19 @@ class collectionOfObjects(Room):
     def itemGenerator(self):# vi kan optimera random generatorn tror vi.
 
         if self.Randomizer() <= 40:
-            self.existingItems.append(LooseCoins())
+            self.existingItems.append(looseCoins())
 
         if self.Randomizer() <= 20:
-            self.existingItems.append(MoneyBag())
+            self.existingItems.append(moneyBag())
 
         if self.Randomizer() <= 15:
-            self.existingItems.append(GoldJewelry())
+            self.existingItems.append(goldJewelry())
 
         if self.Randomizer() <= 10:
-            self.existingItems.append(GemStone())
+            self.existingItems.append(gemStone())
 
         if self.Randomizer() <= 5:
-            self.existingItems(SmallTreasureChest())
+            self.existingItems.append(smallTreasureChest())
 
         return self.existingItems
 
