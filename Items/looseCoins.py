@@ -9,7 +9,7 @@ class looseCoins(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "some coins"
+        returnValue = "some coins lying around"
         return returnValue
 
     def toStringSingle(self):

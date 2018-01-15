@@ -51,16 +51,16 @@ class Map:
                 elif enteredRoom.exit:
                     string_to_return = "You have found the exit of the dungeon!"
                 else:
-                    string_to_return = "You enter to continue the fight against %s"+ enteredRoom.printMobs()
+                    string_to_return = "You enter to continue the fight against "+ enteredRoom.printMobs()
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) == 0:
             string_to_return = "The room is empty of monsters but, "+ enteredRoom.printTreasure()
 
         elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
-            string_to_return = "You enter a room and face: %s" + enteredRoom.printMobs()
+            string_to_return = "You enter a room and when you look around you see. " + enteredRoom.printMobs()
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
-            string_to_return = "You see something shiny but your attention is quickly drawn elsewhere. " + enteredRoom.printMobs()
+            string_to_return = "You see something shiny but your attention is quickly drawn elsewhere ," + enteredRoom.printMobs()
 
 
         return string_to_return
@@ -96,6 +96,21 @@ class Map:
 
         return valid_move
 
+    def print_map(self):
+        for y in range(0, self.size):
+            print("\n"+"-"*(self.size*3))
+            for x in range(0, self.size):
+                room = self.actual_map[y][x]
+                if room.visited and not (self.player_y == y and self.player_x == x):
+                    print(" _ ", end='')
+                elif self.player_y == y and self.player_x == x:
+                    print(" P ", end="")
+                else:
+                    print(" X ", end='')
 
-newMap = Map(4, (1,2))
+newMap = Map(8, (1,2))
 newMap.move_on_map("up")
+newMap.move_on_map("right")
+newMap.move_on_map("left")
+newMap.move_on_map("left")
+newMap.print_map()
