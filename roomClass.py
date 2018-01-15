@@ -11,6 +11,9 @@ from Items.moneyBag import moneyBag
 from Items.smallTreasureChest import smallTreasureChest
 
 
+
+
+
 class Room:
     def __init__(self,):
         self.aliveMonsters = []
@@ -38,37 +41,48 @@ class Room:
 
 #Changes the visited to true when you visited the room.
     def visitedRoom(self):
-        self.visited = True
-        return self.visited
 
-#Generate mobs into the room.
+        self.visited = True
+
+    # Generate mobs into the room.
     def monsterGenerator(self):
+
         if self.Randomizer() <= 5:
             self.aliveMonsters.append(Troll())
+
         if self.Randomizer() <= 15:
             self.aliveMonsters.append(Skeleton())
+
         if self.Randomizer() >= 10:
             self.aliveMonsters.append(Orc)
+
         if self.Randomizer() <= 20:
             self.aliveMonsters.append(GiantSpider)
+
         return self.aliveMonsters
 
 #Generates items and put them in the created room.
     def itemGenerator(self):
         if self.Randomizer() <= 40:
             self.existingItems.append(looseCoins())
+
         if self.Randomizer() <= 20:
             self.existingItems.append(moneyBag())
+
         if self.Randomizer() <= 15:
             self.existingItems.append(goldJewelry())
+
         if self.Randomizer() <= 10:
             self.existingItems.append(gemStone())
+
         if self.Randomizer() <= 5:
             self.existingItems.append(smallTreasureChest())
+
         return self.existingItems
 
 #Function with a randomizer
     def Randomizer(self):
         randomizer = random.randint(1, 100)
+
         return randomizer
 
