@@ -29,7 +29,7 @@ class Room:
         self.itemGenerator()
 
 
-    def exitRoom(self, i):  ## design fråga, men kan vara användbar
+    def exitRoom(self):  ## design fråga, men kan vara användbar
         self.existingItems = []
         self.aliveMonsters = []
         self.exit = True

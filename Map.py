@@ -23,8 +23,8 @@ class Map:
         return map_list
 
     def random_room(self):
-        x_pos = random.randint(0,self.size)
-        y_pos = random.randint(0,self.size)
+        x_pos = random.randint(0, self.size-1)
+        y_pos = random.randint(0, self.size-1)
         return (x_pos, y_pos)
 
     def place_exit(self):
@@ -38,9 +38,7 @@ class Map:
 
 
     def place_player(self):
-        x,y = self.player_position
+        x = self.player_position[0]
+        y = self.player_position[1]
+
         self.actual_map[x][y].startingRoom()
-
-
-newMap = Map(5, (1, 2))
-print(newMap.actual_map[1][4])
