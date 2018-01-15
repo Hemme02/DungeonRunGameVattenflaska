@@ -8,6 +8,10 @@ from Clear import clear_screen
 from classThief import Thief
 from colorama import init
 from termcolor import colored
+from Map import *
+
+
+
 
 
 def welcomeMenu ():
@@ -259,8 +263,8 @@ def more_info():
         more_info()
 
 
-# Menu: You are this character,  Which map size do you want to have?
 
+# Menu: You are this character,  Which map size do you want to have?
 def mapMenu(name, typeOfCharacter):
     clear_screen()
 
@@ -278,6 +282,8 @@ def mapMenu(name, typeOfCharacter):
 
     result = foorLoop()
 
+
+
     print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or  \n""4. Select start position  \n""5. Go back \n")
     return
 
@@ -287,19 +293,20 @@ def mapMenu(name, typeOfCharacter):
 
         # Size small
         if choice_size_map == "1":
-            mapMenu()
+            pass
+
 
         # Size medium
         elif choice_size_map == "2":
-            exit()
+            pass
 
         # Size large
         elif choice_size_map == "3":
-            exit()
+            pass
 
         # Select start position
         elif choice_size_map == "4":
-            exit()
+            pass
 
         # Go back
         elif choice_size_map == "5":
@@ -309,23 +316,10 @@ def mapMenu(name, typeOfCharacter):
         else:
             print("Try again")
             input("Press any key to continue")
-            welcome()
+            welcomeMenu()
 
 
 
-
-def Map():
-
-
-        map = [['X', 'X', 'X', 'X', 'X'],
-               ['X', 'X', 'X', 'X', 'X'],
-               ['X', 'X', 'P', 'X', 'X'],
-               ['X', 'X', 'X', 'X', 'X'],
-               ['X', 'X', 'X', 'X', 'X'],
-               ['X', 'X', 'X', 'X', 'X'],
-               ['X', 'X', 'X', 'X', 'X']]
-        for row in map:
-            print(row)
 
 def finish_dungeon():
     print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
@@ -338,13 +332,16 @@ def finish_dungeon():
         print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit ")
         end_game_choice = input("Your choice :")
         if end_game_choice == "1":
-            pass
+            mapMenu()
             #TODO choose mapsize menu
         elif end_game_choice == "2":
             newGame.active_character = None
         elif end_game_choice == "3":
-            #TODO exit function here
-            sys.exit()
+            result = finish()
+            if result == False:
+                welcome()
+           #TODO exit function here
+
         else:
            print("Wrong choice")
 
@@ -352,10 +349,9 @@ def finish_dungeon():
 
 
 
-##currentCharacters, deadCharacters = load_game_characters()
-##newGame = Game(currentCharacters, deadCharacters)
-##welcomeMenu()
+currentCharacters, deadCharacters = load_game_characters()
+newGame = Game(currentCharacters, deadCharacters)
 
-Map = Map()
+welcomeMenu()
 
 
