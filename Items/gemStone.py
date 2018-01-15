@@ -7,3 +7,11 @@ class gemStone(Items):
 
         Items.__init__(self,gold_, rarity_)
 
+    def toString(self):
+        returnValue = "A briliant ruby."
+        return returnValue
+
+    def toStingSingle(self):
+        returnValue = "Gemstones glitter in the torchlights."
+        return returnValue
+

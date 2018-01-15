@@ -7,3 +7,11 @@ class moneyBag(Items):
         rarity_ = 20
 
         Items.__init__(self,gold_, rarity_)
+
+    def toString(self):
+        returnValue = "A bag of coins"
+        return returnValue
+
+    def toStingSingle(self):
+        returnValue = "Someone has dropped their bag of coins. Finders keepers."
+        return returnValue
