@@ -108,6 +108,12 @@ class Map:
                 else:
                     print(" X ", end='')
 
+    def player_can_exit(self):
+        if self.actual_map[self.player_y][self.player_x].exit:
+            return True
+        else:
+            return False
+
 newMap = Map(8, (1,2))
 newMap.move_on_map("up")
 newMap.move_on_map("right")
