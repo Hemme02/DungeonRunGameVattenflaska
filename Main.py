@@ -153,8 +153,8 @@ def select_character():
 
 def more_info():
     clear_screen()
-    print("Select which character you want to know more of:")
-    print("\n 1. Wizard\n 2. Knight\n 3. Thief\n 4. Go back")
+    print("Select which option you want to know more of:")
+    print("\n 1. Wizard\n 2. Knight\n 3. Thief\n 4. Map \n 5. Go back")
     info_choice = input("Your choice: ")
 
     def showInToWizard():
@@ -238,6 +238,14 @@ def more_info():
         input("Press key to continue")
         more_info()
 
+    def mapInfo():
+        clear_screen()
+        print( " Players can select map size for each new adventure as follows: ")
+        print(" Small = 4x4, Medium = 5x5, Large = 8x8  ")
+        print(" [X] = one room  ")
+        input("Press key to continue")
+        more_info()
+
     if info_choice == "1":
         showInToWizard()
     elif info_choice == "2":
@@ -245,27 +253,35 @@ def more_info():
     elif info_choice == "3":
         showInfoThief()
     elif info_choice == "4":
+        mapInfo()
+    elif info_choice == "5":
         createMenu()
     else:
         print("Wrong choice")
         more_info()
 
-# Menu: You are this character,  Which size on map do you want to have?
+
+
+# Menu: You are this character,  Which map size do you want to have?
+
 def mapMenu(name, typeOfCharacter):
     clear_screen()
+
+
     def foorLoop():
         if typeOfCharacter == "1":
             return "Wizard"
         elif typeOfCharacter == "2":
             return "Knight"
         elif typeOfCharacter == "3":
-            return "Theif"
+            return "Thief"
         else:
             print("Error")
 
+
     result = foorLoop()
 
-    print("\nYou are a "+result+" with name "+name+"\nSelect size for the map: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""4. Show more info about the map \n""5. Select start position  \n""6. Exit \n")
+    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or  \n""4. Select start position  \n""5. Go back \n")
     return
 
     while True:
@@ -284,20 +300,14 @@ def mapMenu(name, typeOfCharacter):
         elif choice_size_map == "3":
             exit()
 
-        # Show more info about the map
-        elif choice_size_map == "4":
-            print("Player can select the size of the map for new adventure as follows, [X] = one room on map,Small = 4x4, Medium = 5x5, Large = 8x8")
-            break
-
         # Select start position
-        elif choice_size_map == "5":
+        elif choice_size_map == "4":
             exit()
 
-        # Close
-        elif choice_size_map == "6":
-            result = finish()
-            if result == False:
-                createCharacter()
+        # Go back
+        elif choice_size_map == "5":
+            createCharacter()
+
 
         else:
             print("Try again")
