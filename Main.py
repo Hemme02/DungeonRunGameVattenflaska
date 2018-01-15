@@ -6,6 +6,9 @@ from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
+from colorama import init
+from termcolor import colored
+
 
 def welcomeMenu ():
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
@@ -256,7 +259,6 @@ def more_info():
         more_info()
 
 
-
 # Menu: You are this character,  Which map size do you want to have?
 
 def mapMenu(name, typeOfCharacter):
@@ -285,7 +287,7 @@ def mapMenu(name, typeOfCharacter):
 
         # Size small
         if choice_size_map == "1":
-            exit()
+            mapMenu()
 
         # Size medium
         elif choice_size_map == "2":
@@ -310,6 +312,21 @@ def mapMenu(name, typeOfCharacter):
             welcome()
 
 
+
+
+def Map():
+        print(colored('World of Dungeon Run', 'blue', 'on_red'))
+
+        map = [['X', 'X', 'X', 'X', 'X'],
+               ['X', 'X', 'X', 'X', 'X'],
+               ['X', 'X', 'P', 'X', 'X'],
+               ['X', 'X', 'X', 'X', 'X'],
+               ['X', 'X', 'X', 'X', 'X'],
+               ['X', 'X', 'X', 'X', 'X'],
+               ['X', 'X', 'X', 'X', 'X']]
+        for row in map:
+            print(row)
+
 def finish_dungeon():
     print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
     newGame.active_character.earn_treasure()
@@ -331,7 +348,14 @@ def finish_dungeon():
         else:
            print("Wrong choice")
 
-currentCharacters, deadCharacters = load_game_characters()
-newGame = Game(currentCharacters, deadCharacters)
-welcomeMenu()
+
+
+
+
+##currentCharacters, deadCharacters = load_game_characters()
+##newGame = Game(currentCharacters, deadCharacters)
+##welcomeMenu()
+
+Map = Map()
+
 
