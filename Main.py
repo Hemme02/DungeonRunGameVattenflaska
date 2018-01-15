@@ -37,7 +37,7 @@ def finish():
 
 def welcome():
     clear_screen()
-    print( "\nDungeon Run\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Close program\n")
+    print( "\nMenu\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Exit\n")
 
     while True:
         choice = input("Your choice: ")
@@ -59,7 +59,7 @@ def welcome():
 
 def menuToStartGame():
     clear_screen()
-    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n\n""Or""\n""4. Show more info \n""5. Go back to start menu \n""6. Close program \n")
+    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n\n""Or""\n""4. Show more info \n""5. Go back to start menu \n")
     return
 
 def createCharacter(number):
@@ -119,11 +119,6 @@ def createMenu ():
         elif choice_start_game == "5":
             welcome()
 
-        # Close
-        elif choice_start_game == "6":
-            result = finish()
-            if result == False:
-                welcome()
 
 def select_character():
     clear_screen()
@@ -240,7 +235,7 @@ def more_info():
 
     def mapInfo():
         clear_screen()
-        print( " Players can select map size for each new adventure as follows: ")
+        print( "Players can select map size for each new adventure as follows: ")
         print(" Small = 4x4, Medium = 5x5, Large = 8x8  ")
         print(" [X] = one room  ")
         input("Press key to continue")
@@ -323,7 +318,7 @@ def finish_dungeon():
     input("\n\nPress key to continue")
     while True:
         clear_screen()
-        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit game")
+        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit ")
         end_game_choice = input("Your choice :")
         if end_game_choice == "1":
             pass
