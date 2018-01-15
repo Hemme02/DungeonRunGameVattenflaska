@@ -30,13 +30,14 @@ class Room:
 
 
     def exitRoom(self, i):  ## design fråga, men kan vara användbar
-        self.existingItems.pop(all(i))
-        self.aliveMonsters.pop(all(i))
+        self.existingItems = []
+        self.aliveMonsters = []
         self.exit = True
 
-    def startingRoom(self, i):
-        self.existingItems.pop(all(i))
-        self.aliveMonsters.pop(all(i))
+    def startingRoom(self):
+        self.existingItems = []
+        self.aliveMonsters = []
+        self.visited = True
 
 
     def visitedRoom(self):
