@@ -14,7 +14,7 @@ class Troll(Character):
         returnValue = "A giant troll looks at you hungerly."
         return returnValue
 
-    def toStingSingle(self):
+    def toStringSingle(self):
         returnValue = "Sturing a large pot a huge troll is cooking her dinner. She looks at you and smiles\n" \
                       "You have a sinking feeling that she wants you in that pot. Then she swings here ladel at you!"
         return returnValue

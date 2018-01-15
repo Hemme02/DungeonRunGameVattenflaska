@@ -40,6 +40,31 @@ class Map:
     def place_player(self):
         self.actual_map[self.player_y][self.player_x].startingRoom()
 
+    def string_for_room_event(self, enteredRoom):
+        string_to_return = ""
+        if len(enteredRoom.aliveMonsters) == 0 and len(enteredRoom.existingItems) == 0:
+            if not (enteredRoom.visited and enteredRoom.exit):
+                string_to_return = "The room you entered looks empty"
+            else:
+                if enteredRoom.cleared:
+                    string_to_return = "You can see your boot tracks on the floor. You have already been here."
+                elif enteredRoom.exit:
+                    string_to_return = "You have found the exit of the dungeon!"
+                else:
+                    string_to_return = "You enter to continue the fight against %s"+ enteredRoom.printMobs()
+
+        elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) == 0:
+            string_to_return = "The room is empty of monsters but, "+ enteredRoom.printTreasure()
+
+        elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
+            string_to_return = "You enter a room and face: %s" + enteredRoom.printMobs()
+
+        elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
+            string_to_return = "You see something shiny but your attention is quickly drawn elsewhere. " + enteredRoom.printMobs()
+
+
+        return string_to_return
+
 
     def move_on_map(self, move):
         valid_move = False
@@ -48,21 +73,29 @@ class Map:
         if move == "up" and self.player_y != 0:
             self.player_y = self.player_y - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             valid_move = True
 
         elif move == "down" and self.player_y != max_size:
             self.player_y = self.player_y + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             valid_move = True
 
         elif move == "left" and self.player_x != 0:
             self.player_x = self.player_x - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             valid_move = True
 
         elif move == "right" and self.player_x != max_size:
             self.player_x = self.player_x + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             valid_move = True
 
         return valid_move
+
+
+newMap = Map(4, (1,2))
+newMap.move_on_map("up")

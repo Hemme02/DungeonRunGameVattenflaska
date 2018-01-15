@@ -9,9 +9,9 @@ class looseCoins(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "Some coins"
+        returnValue = "some coins"
         return returnValue
 
-    def toStingSingle(self):
-        returnValue = "A few coins are spread out around the floor"
+    def toStringSingle(self):
+        returnValue = "a few coins are spread out around the floor"
         return returnValue

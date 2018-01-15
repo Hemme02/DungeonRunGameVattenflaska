@@ -9,9 +9,9 @@ class goldJewelry(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "A beautiful golden necklace"
+        returnValue = "a beautiful golden necklace lies on a table"
         return returnValue
 
-    def toStingSingle(self):
-        returnValue = "Golden jewelry has always been your favorite. And know you own one more golden necklace."
+    def toStringSingle(self):
+        returnValue = "golden jewelry has always been your favorite. And know you own one more golden necklace."
         return returnValue

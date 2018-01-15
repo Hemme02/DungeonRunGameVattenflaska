@@ -19,6 +19,7 @@ class Room:
         self.aliveMonsters = []
         self.existingItems = []
         self.visited = False
+        self.cleared = False
         self.exit = False
         self.roomGenerator()
 
@@ -26,6 +27,8 @@ class Room:
     def roomGenerator(self):
         self.monsterGenerator()
         self.itemGenerator()
+        if len(self.aliveMonsters) == 0:
+            self.cleared = True
 
 #Function that clear the room and turn it into a exit-room.
     def exitRoom(self):
@@ -53,13 +56,13 @@ class Room:
         if self.Randomizer() <= 15:
             self.aliveMonsters.append(Skeleton())
 
-        if self.Randomizer() >= 10:
-            self.aliveMonsters.append(Orc)
+        if self.Randomizer() <= 10:
+            self.aliveMonsters.append(Orc())
 
         if self.Randomizer() <= 20:
-            self.aliveMonsters.append(GiantSpider)
+            self.aliveMonsters.append(GiantSpider())
 
-        return self.aliveMonsters
+
 
 #Generates items and put them in the created room.
     def itemGenerator(self):
@@ -78,11 +81,50 @@ class Room:
         if self.Randomizer() <= 5:
             self.existingItems.append(smallTreasureChest())
 
-        return self.existingItems
-
 #Function with a randomizer
     def Randomizer(self):
         randomizer = random.randint(1, 100)
 
         return randomizer
 
+    def printMobs(self):
+        if len(self.aliveMonsters) > 1:
+            return self.printListOfMobs()
+        else:
+            return self.printSingleMob()
+
+    def printSingleMob(self):
+        return self.aliveMonsters[0].toStringSingle()
+
+    def printListOfMobs(self):
+        returnString = ""
+        number_in_list = 0
+        length = len(self.aliveMonsters)
+
+        for monster in self.aliveMonsters:
+            number_in_list+=1
+            returnString += monster.toString()
+            if number_in_list < length:
+                returnString += "\n"
+
+        return returnString
+
+    def printSingleTreasure(self):
+        return self.existingItems[0].toStringSingle()
+
+    def printListOfTreasuer(self):
+        returnString = ""
+        number_in_list = 0
+        length = len(self.existingItems)
+        for treasure in self.existingItems:
+            number_in_list += 1
+            returnString += treasure.toString()
+            if number_in_list < length:
+                returnString += "\n"
+        return returnString
+
+    def printTreasure(self):
+        if len(self.existingItems) > 1:
+            return self.printSingleTreasure()
+        else:
+            return self.printListOfTreasuer()

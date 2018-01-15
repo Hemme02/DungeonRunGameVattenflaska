@@ -9,9 +9,9 @@ class smallTreasureChest(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "A small chest"
+        returnValue = "a small chest"
         return returnValue
 
-    def toStingSingle(self):
-        returnValue = "On the floor sits a chest full of valuable items. This is what you been looking for."
+    def toStringSingle(self):
+        returnValue = "on the floor sits a chest full of valuable items. This is what you been looking for."
         return returnValue

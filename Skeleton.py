@@ -14,7 +14,7 @@ class Skeleton(Character):
         returnValue = "A undead warrior turns and attacks you!"
         return returnValue
 
-    def toStingSingle(self):
-        returnValue = "You enter a masoleum. As you regard the graves along the wall you hear a noice behind you." \
+    def toStringSingle(self):
+        returnValue = "as you regard the graves along the wall you hear a noice behind you." \
                       "\nWhen you turn a sceleton wielding a sword attacks you!"
         return returnValue

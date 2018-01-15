@@ -8,10 +8,10 @@ class gemStone(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "A briliant ruby."
+        returnValue = "a briliant ruby lies in the dirth."
         return returnValue
 
-    def toStingSingle(self):
-        returnValue = "Gemstones glitter in the torchlights."
+    def toStringSingle(self):
+        returnValue = "gemstones glitter in the torchlights."
         return returnValue
 
