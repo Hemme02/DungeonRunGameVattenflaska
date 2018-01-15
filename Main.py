@@ -315,7 +315,7 @@ def mapMenu(name, typeOfCharacter):
 
 
 def Map():
-        print(colored('World of Dungeon Run', 'blue', 'on_red'))
+
 
         map = [['X', 'X', 'X', 'X', 'X'],
                ['X', 'X', 'X', 'X', 'X'],
