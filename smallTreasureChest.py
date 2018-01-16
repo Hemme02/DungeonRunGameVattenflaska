@@ -1,4 +1,4 @@
-from Items.itemClass import Items
+from itemClass import Items
 
 class smallTreasureChest(Items):
 

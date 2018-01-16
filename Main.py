@@ -8,7 +8,6 @@ from Clear import clear_screen
 from classThief import Thief
 from colorama import init
 from termcolor import colored
-from Map import *
 
 
 
@@ -152,6 +151,10 @@ def select_character():
         except(ValueError):
             print("Wrong choice")
             welcomeMenu()
+    else:
+        print("No alive characters to choose from. You have to create a new one.")
+        input("Press any key to continue")
+        welcome()
 
 def more_info():
     clear_screen()
@@ -333,15 +336,12 @@ def finish_dungeon():
         end_game_choice = input("Your choice :")
         if end_game_choice == "1":
             mapMenu()
-            #TODO choose mapsize menu
         elif end_game_choice == "2":
             newGame.active_character = None
         elif end_game_choice == "3":
             result = finish()
             if result == False:
                 welcome()
-           #TODO exit function here
-
         else:
            print("Wrong choice")
 
@@ -351,7 +351,6 @@ def finish_dungeon():
 
 currentCharacters, deadCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters)
-
 welcomeMenu()
 
 

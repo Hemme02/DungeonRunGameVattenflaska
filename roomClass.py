@@ -1,17 +1,15 @@
-from Troll import Troll
-from Skeleton import Skeleton
-from Orc import Orc
-from GiantSpider import GiantSpider
 import random
-from Items.itemClass import  Items
-from Items.gemStone import gemStone
-from Items.goldJewelry import goldJewelry
-from Items.looseCoins import looseCoins
-from Items.moneyBag import moneyBag
-from Items.smallTreasureChest import smallTreasureChest
 
+from gemStone import gemStone
+from goldJewelry import goldJewelry
+from looseCoins import looseCoins
+from smallTreasureChest import smallTreasureChest
 
-
+from GiantSpider import GiantSpider
+from Orc import Orc
+from Skeleton import Skeleton
+from Troll import Troll
+from moneyBag import moneyBag
 
 
 class Room:

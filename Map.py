@@ -1,7 +1,7 @@
 import random
 import roomClass
 from colorama import init
-from termcolor import colored
+#from termcolor import colored
 
 
 class Map:
@@ -116,9 +116,10 @@ class Map:
         else:
             return False
 
-newMap = Map(8, (1,2))
+newMap = Map(4, (1,2))
 newMap.move_on_map("up")
 newMap.move_on_map("right")
 newMap.move_on_map("left")
 newMap.move_on_map("left")
+newMap.move_on_map("right")
 newMap.print_map()
