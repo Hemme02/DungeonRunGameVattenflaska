@@ -1,5 +1,6 @@
 import sys
 import time
+import winsound
 from Game import Game
 from LoadGame import load_game_characters
 from classKnight import Knight
@@ -13,7 +14,9 @@ from termcolor import colored
 
 
 
+
 def welcomeMenu ():
+    winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
     time.sleep(0.5)
     clear_screen()
@@ -31,6 +34,7 @@ def welcomeMenu ():
     print('______________________________________________________________________________________________')
     time.sleep(0.5)
     input("Press any key to start the game")
+    winsound.PlaySound(None, winsound.SND_PURGE)
     welcome()
     return
 
