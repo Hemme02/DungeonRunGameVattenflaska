@@ -102,16 +102,16 @@ class Map:
 
     def print_map(self):
         for y in range(0, self.size):
-            print("\n"+"-"*(self.size*6))
+            print("\n"+"-"*(self.size*5))
             for x in range(0, self.size):
                 room = self.actual_map[y][x]
                 if room.visited and not (self.player_y == y and self.player_x == x):
-                    print('' + " | _ |", end='')
+                    print('' + "| _ |", end='')
                 elif self.player_y == y and self.player_x == x:
-                    print('' + " | P |" , end="")
+                    print('' + "| P |" , end="")
                 else:
-                    print('' + " | X |", end='')
-        print("\n" + "-" * (self.size * 6))
+                    print('' + "| X |", end='')
+        print("\n" + "-" * (self.size * 5))
 
     def player_can_exit(self):
         if self.actual_map[self.player_y][self.player_x].exit:
