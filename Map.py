@@ -1,8 +1,5 @@
 import random
 import roomClass
-from colorama import init
-#from termcolor import colored
-
 
 class Map:
 
@@ -12,8 +9,6 @@ class Map:
         self.actual_map = self.createMap()
         self.place_exit()
         self.place_player()
-
-
 
     def createMap(self):
         map_list = []
@@ -78,29 +73,34 @@ class Map:
             self.player_y = self.player_y - 1
             print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            self.print_map()
             valid_move = True
 
         elif move == "down" and self.player_y != max_size:
             self.player_y = self.player_y + 1
             print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            self.print_map()
             valid_move = True
 
         elif move == "left" and self.player_x != 0:
             self.player_x = self.player_x - 1
             print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            self.print_map()
             valid_move = True
 
         elif move == "right" and self.player_x != max_size:
             self.player_x = self.player_x + 1
             print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            self.print_map()
             valid_move = True
 
         return valid_move
 
     def print_map(self):
+
         for y in range(0, self.size):
             print("\n"+"-"*(self.size*4))
             for x in range(0, self.size):
@@ -111,6 +111,7 @@ class Map:
                     print('|' + " P " , end="")
                 else:
                     print('|' + " X ", end='')
+        self.move_player()
 
     def player_can_exit(self):
         if self.actual_map[self.player_y][self.player_x].exit:
@@ -130,64 +131,63 @@ class Map:
             if(current_room_y != 0 and current_room_y != max_room) and (current_room_x != 0 and current_room_x != max_room):
                 if current_room_complete.exit:
                     print("Exit the dungeon (Print Exit)")
-                print("Up\nDown\nLeft\nRight")
+                print("\nUp\nDown\nLeft\nRight")
 
             if current_room_x != max_room:
 
                 if current_room_y == 0 and current_room_x != 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Down\nLeft\nRight")
+                    print("\nDown\nLeft\nRight")
 
                 elif current_room_y == 0 and current_room_x == 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Down\nRight")
+                    print("\nDown\nRight")
 
                 elif current_room_y == max_room and current_room_x != 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Up\nLeft\nRight")
+                    print("\nUp\nLeft\nRight")
 
                 elif current_room_y == max_room and current_room_x == 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Up\nRight")
+                    print("\nUp\nRight")
 
             if current_room_y != max_room:
 
                 if current_room_x == 0 and current_room_y != 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Up\nDown\nRight")
+                    print("\nUp\nDown\nRight")
 
                 elif current_room_x == max_room and current_room_y != 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Up\nDown\nLeft")
+                    print("\nUp\nDown\nLeft")
 
                 elif current_room_x == max_room and current_room_y == 0:
                     if current_room_complete.exit:
                         print("Exit the dungeon (Print Exit)")
-                    print("Down\nLeft")
+                    print("\nDown\nLeft")
 
             if current_room_y == max_room and current_room_x == max_room:
                 if current_room_complete.exit:
                     print("Exit the dungeon (Print Exit)")
-                print("Up\nLeft")
-
+                print("\nUp\nLeft")
 
             player_move = input("Where do you want to go: ")
             if player_move == "up" or player_move == "down" or player_move == "left" or player_move == "right" or (player_move == "exit" and current_room_complete.exit):
                break
             else:
-                print("Invalid move")
-                input("Press any key to continue")
+                input("Invalid move, Press any key to continue")
                 continue
 
         if player_move.lower() == "up":
             if not self.move_on_map("up"):
                 print("Ouch, you walked into a wall. You cant go that way!")
+                self.print_map()
                 self.move_player()
             else:
                 self.player_event()
@@ -195,6 +195,7 @@ class Map:
         elif player_move.lower() == "down":
             if not self.move_on_map("down"):
                 print("Ouch, you walked into a wall. You cant go that way!")
+                self.print_map()
                 self.move_player()
             else:
                 self.player_event()
@@ -202,6 +203,7 @@ class Map:
         elif player_move.lower() == "left":
             if not self.move_on_map("left"):
                 print("Ouch, you walked into a wall. You cant go that way!")
+                self.print_map()
                 self.move_player()
             else:
                 self.player_event()
@@ -209,10 +211,10 @@ class Map:
         elif player_move.lower() == "right":
             if not self.move_on_map("right"):
                 print("Ouch, you walked into a wall. You cant go that way!")
+                self.print_map()
                 self.move_player()
             else:
                 self.player_event()
-
 
         elif player_move.lower() == "exit":
             if not current_room_complete.exit:
@@ -222,6 +224,8 @@ class Map:
             else:
                 pass
                 #TODO exitfunction
+
+
 
     def player_event(self):
         actual_position = self.actual_map[self.player_y][self.player_x]

@@ -272,7 +272,7 @@ def startPosition(maxSize):
 
     while True:
         print("Choose starting position,\n 1: North West \n 2: North East. \n 3: South West \n 4: South East  ")
-        choice = input("\n Your choicec: ")
+        choice = input("\n Your choice: ")
         if choice == "1":
             startingPos = 0,0
 
@@ -326,7 +326,7 @@ def mapMenu(name, typeOfCharacter):
 def mapSize():
     while True:
 
-        choice_size_map = input("\n Your choiceb: ")
+        choice_size_map = input("\n Your choice: ")
         # Size small
         if choice_size_map == "1":
 
@@ -366,7 +366,7 @@ def finish_dungeon():
     while True:
         clear_screen()
         print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit ")
-        end_game_choice = input("Your choicea :")
+        end_game_choice = input("Your choice :")
         if end_game_choice == "1":
             mapMenu()
         elif end_game_choice == "2":
