@@ -270,20 +270,28 @@ def more_info():
 
 def startPosition(maxSize):
 
-    try:
+    while True:
         choice = input("Choose starting position,\n 1: North West \n 2: North East. \n 3: South West \n 4: South East  ")
 
         if choice == "1":
-            newMap = Map(maxSize,(0,0))
+            startingPos = 0,0
+
         elif choice == "2":
-            Map(maxSize,(0, maxSize))
+            startingPos = 0, maxSize
         elif choice == "3":
-            Map(maxSize,(maxSize, 0))
+            startingPos = maxSize, 0
         elif choice == "4":
-            Map(maxSize(maxSize, maxSize - 1))
-        return newMap
-    except:
-        print("Wrong input.")
+            startingPos = maxSize - 1
+
+
+        else:
+            print("Wrong Input.")
+
+        return startingPos
+
+
+
+
 
 
 
@@ -309,6 +317,8 @@ def mapMenu(name, typeOfCharacter):
 
 
     print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""5. Go back \n")
+    size = mapSize()
+    Map(size, startPosition(size))
 
 def mapSize():
     while True:
@@ -371,5 +381,7 @@ def finish_dungeon():
 currentCharacters, deadCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters)
 welcomeMenu()
-size = mapSize() # väljer mapsize
-newMap = startPosition(size) # skapar map
+size = mapSize()
+Map(size,startPosition(size))
+
+
