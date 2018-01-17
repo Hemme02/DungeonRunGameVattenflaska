@@ -7,8 +7,7 @@ from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
-#from colorama import init
-#from termcolor import colored
+
 from Map import Map
 
 
