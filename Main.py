@@ -277,11 +277,12 @@ def startPosition(maxSize):
             startingPos = 0,0
 
         elif choice == "2":
-            startingPos = 0, maxSize
+            startingPos = 0,maxSize -1
+            print(maxSize)
         elif choice == "3":
-            startingPos = maxSize, 0
+            startingPos = maxSize - 1, 0
         elif choice == "4":
-            startingPos = maxSize - 1
+            startingPos = maxSize - 1, maxSize - 1
 
 
         else:
