@@ -1,22 +1,21 @@
 import sys
 import time
-import winsound
+#import winsound
 from Game import Game
 from LoadGame import load_game_characters
 from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
-from colorama import init
-from termcolor import colored
-
-
+#from colorama import init
+#from termcolor import colored
+from Map import Map
 
 
 
 
 def welcomeMenu ():
-    winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
+#    winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
     time.sleep(0.5)
     clear_screen()
@@ -34,7 +33,7 @@ def welcomeMenu ():
     print('______________________________________________________________________________________________')
     time.sleep(0.5)
     input("Press any key to start the game")
-    winsound.PlaySound(None, winsound.SND_PURGE)
+  ##   winsound.PlaySound(None, winsound.SND_PURGE)
     welcome()
     return
 
@@ -269,11 +268,29 @@ def more_info():
         print("Wrong choice")
         more_info()
 
+def startPosition(maxSize):
+
+    try:
+        choice = input("Choose starting position, 1: North West \n 2: North East. \n 3: South West \n South East  ")
+
+        if choice == "1":
+            newMap = Map(maxSize,(0,0))
+        elif choice == "2":
+            newMap = Map(maxSize,(0, maxSize))
+        elif choice == "3":
+            newMap = Map(maxSize,(maxSize, 0))
+        elif choice == "4":
+            newMap = (maxSize(maxSize, maxSize - 1))
+
+    except:
+        print("Wrong input.")
+
 
 
 # Menu: You are this character,  Which map size do you want to have?
 def mapMenu(name, typeOfCharacter):
     clear_screen()
+
 
 
     def foorLoop():
@@ -291,25 +308,24 @@ def mapMenu(name, typeOfCharacter):
 
 
 
-    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or  \n""4. Select start position  \n""5. Go back \n")
-    return
-
+    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""5. Go back \n")
+    mapSize()
+def mapSize():
     while True:
 
         choice_size_map = input("Your choice: ")
-
         # Size small
         if choice_size_map == "1":
-            pass
-
+            print("hashd")
+            startPosition(4)
 
         # Size medium
         elif choice_size_map == "2":
-            pass
+            startPosition(5)
 
         # Size large
         elif choice_size_map == "3":
-            pass
+            startPosition(8)
 
         # Select start position
         elif choice_size_map == "4":
@@ -348,7 +364,6 @@ def finish_dungeon():
                 welcome()
         else:
            print("Wrong choice")
-
 
 
 
