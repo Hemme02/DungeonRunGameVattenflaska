@@ -46,6 +46,10 @@ class Room:
         self.visited = True
 
     # Generate mobs into the room.
+
+    def clear_room(self):
+        self.cleared = True
+
     def monsterGenerator(self):
 
         if self.Randomizer() <= 5:
