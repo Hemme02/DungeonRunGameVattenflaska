@@ -113,7 +113,7 @@ class Map:
                 elif self.player_y == y and self.player_x == x:
                     print('' + "| P |" , end="")
                 else:
-                    print('|' + " X ", end='')
+                    print('' + "| X |", end='')
 
         print("\n" + "-" * (self.size * 5))
         self.move_player()
@@ -249,4 +249,4 @@ class Map:
 
 
 #newMap = Map(4, (1,2))
-#newMap.move_player()
+#newMap.print_map()
