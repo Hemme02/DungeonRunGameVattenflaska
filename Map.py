@@ -114,9 +114,9 @@ class Map:
                     print('' + "| P |" , end="")
                 else:
                     print('|' + " X ", end='')
-        self.move_player()
-                    print('' + "| X |", end='')
+
         print("\n" + "-" * (self.size * 5))
+        self.move_player()
 
     def player_can_exit(self):
         if self.actual_map[self.player_y][self.player_x].exit:
