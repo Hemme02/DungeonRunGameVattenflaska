@@ -238,5 +238,5 @@ class Map:
             self.move_player()
 
 
-newMap = Map(4, (1,2))
-newMap.move_player()
+#newMap = Map(4, (1,2))
+#newMap.move_player()
