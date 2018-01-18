@@ -1,6 +1,5 @@
 import random
 import roomClass
-#
 
 class Map:
 
@@ -10,6 +9,7 @@ class Map:
         self.actual_map = self.createMap()
         self.place_exit()
         self.place_player()
+        self.exited_map = False
 
 
 
@@ -131,7 +131,7 @@ class Map:
         max_room = self.size-1
 
 
-        while True:
+        while True and not self.exited_map:
 
             if(current_room_y != 0 and current_room_y != max_room) and (current_room_x != 0 and current_room_x != max_room):
                 if current_room_complete.exit:
@@ -188,48 +188,50 @@ class Map:
             else:
                 input("Invalid move, Press any key to continue")
                 continue
+        if not self.exited_map:
+            if player_move.lower() == "up":
+                if not self.move_on_map("up"):
+                    print("Ouch, you walked into a wall. You cant go that way!")
+                    self.print_map()
+                    self.move_player()
+                else:
+                    self.player_event()
 
-        if player_move.lower() == "up":
-            if not self.move_on_map("up"):
-                print("Ouch, you walked into a wall. You cant go that way!")
-                self.print_map()
-                self.move_player()
-            else:
-                self.player_event()
+            elif player_move.lower() == "down":
+                if not self.move_on_map("down"):
+                    print("Ouch, you walked into a wall. You cant go that way!")
+                    self.print_map()
+                    self.move_player()
+                else:
+                    self.player_event()
 
-        elif player_move.lower() == "down":
-            if not self.move_on_map("down"):
-                print("Ouch, you walked into a wall. You cant go that way!")
-                self.print_map()
-                self.move_player()
-            else:
-                self.player_event()
+            elif player_move.lower() == "left":
+                if not self.move_on_map("left"):
+                    print("Ouch, you walked into a wall. You cant go that way!")
+                    self.print_map()
+                    self.move_player()
+                else:
+                    self.player_event()
 
-        elif player_move.lower() == "left":
-            if not self.move_on_map("left"):
-                print("Ouch, you walked into a wall. You cant go that way!")
-                self.print_map()
-                self.move_player()
-            else:
-                self.player_event()
-
-        elif player_move.lower() == "right":
-            if not self.move_on_map("right"):
-                print("Ouch, you walked into a wall. You cant go that way!")
-                self.print_map()
-                self.move_player()
-            else:
-                self.player_event()
+            elif player_move.lower() == "right":
+                if not self.move_on_map("right"):
+                    print("Ouch, you walked into a wall. You cant go that way!")
+                    self.print_map()
+                    self.move_player()
+                else:
+                    self.player_event()
 
 
-        elif player_move.lower() == "exit":
-            if not current_room_complete.exit:
-                print("You try to exit thru a solid wall. You take damage.")
-                #TODO take damage
-                self.move_player()
-            else:
-                pass
-                #TODO exitfunction
+            elif player_move.lower() == "exit":
+                if not current_room_complete.exit:
+                    print("You try to exit thru a solid wall. You take damage.")
+                    #TODO take damage
+                    self.move_player()
+                else:
+                    print("funkar hit")
+                    self.exited_map = True
+                    return
+        return
 
 
 
@@ -247,6 +249,3 @@ class Map:
         else:
             self.move_player()
 
-
-#newMap = Map(4, (1,2))
-#newMap.print_map()
