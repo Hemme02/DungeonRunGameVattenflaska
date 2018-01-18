@@ -121,7 +121,7 @@ def createMenu ():
             welcome()
 
         else:
-            print ("Wrong choise, try again")
+            print ("Wrong choice, try again")
 
 
 def select_character():
