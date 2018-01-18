@@ -15,5 +15,5 @@ class Orc(Character):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "an Orc looks up from his meal and smiles drowling at you before heafting his large club and swings it at your head"
+        returnValue = "An Orc looks up from his meal and smiles drooling at you before heafting his large club and swings it towards your head"
         return returnValue

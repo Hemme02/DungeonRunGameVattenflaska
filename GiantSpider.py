@@ -15,5 +15,5 @@ class GiantSpider(Character):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "From above a giant mass emerges the darkneess. A giant spider attacks you!"
+        returnValue = "From above a giant mass emerges the darkness, a giant spider attacks you!"
         return returnValue
