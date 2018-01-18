@@ -41,7 +41,7 @@ def finish():
 
 def welcome():
     clear_screen()
-    print( "\nMenu\nPlease choose one of following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Exit\n")
+    print( "\nMenu\nPlease choose one of the following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Exit\n")
 
     while True:
         choice = input("Your choice: ")
@@ -63,7 +63,7 @@ def welcome():
 
 def menuToStartGame():
     clear_screen()
-    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n\n""Or""\n""4. Show more info \n""5. Go back to start menu \n")
+    print ("\nStart Adventure\nSelect your character:\n" "1. Wizard \n""2. Knight  \n""3. Thief \n""\n""4. Show more info \n""5. Go back to start menu \n")
     return
 
 def createCharacter(number):
@@ -121,7 +121,7 @@ def createMenu ():
             welcome()
 
         else:
-            print ("Wrong choice, try again")
+            print ("Wrong choice, try again!")
 
 
 def select_character():
@@ -132,7 +132,7 @@ def select_character():
         for character in newGame.currentCharacters:
             print(str(num)+":  "+character.name)
             num += 1
-        print(str(num) + ":  Go Back")
+        print("\n"+str(num) + ":  Go Back")
         try:
             while True:
                 character_choice =int(input("\nYour choice: "))
@@ -157,7 +157,7 @@ def select_character():
 def more_info():
     clear_screen()
     print("Select which option you want to know more of:")
-    print("\n 1. Wizard\n 2. Knight\n 3. Thief\n 4. Map \n 5. Go back")
+    print("\n 1. Wizard\n 2. Knight\n 3. Thief\n 4. Map \n\n 5. Go back")
     info_choice = input("Your choice: ")
 
     def showInToWizard():
@@ -267,7 +267,7 @@ def startPosition(maxSize):
     clear_screen()
 
     while True:
-        print("Choose start position: \n 1: North West \n 2: North East \n 3: South West \n 4: South East \n 5: Go back ")
+        print("Choose starting position: \n 1: North West \n 2: North East \n 3: South West \n 4: South East \n\n 5: Go back ")
         choice = input("\n Your choice: ")
         if choice == "1":
             startingPos = 0,0
@@ -300,7 +300,7 @@ def mapMenu(name, typeOfCharacter):
 
     result = foorLoop()
 
-    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""4. Go back \n")
+    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
     size = mapSize()
     newMap = Map(size, startPosition(size))
     newMap.print_map()
@@ -331,7 +331,7 @@ def mapSize():
 
 def finish_dungeon():
     clear_screen()
-    print("You manage to get out of the dungeon.\nYou are carrying "+ str(newGame.active_character.treasure_carried)+" gold with you")
+    print("You managed to get out of the dungeon.\nYou are carrying "+ str(newGame.active_character.treasure_carried)+" gold with you")
     newGame.active_character.earn_treasure()
     newGame.save_characters()
     print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
