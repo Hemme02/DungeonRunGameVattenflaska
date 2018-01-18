@@ -4,7 +4,7 @@ from classWizard import Wizard
 
 
 class Game:
-    active_character = Wizard("Kim")
+    active_character = None
     currentCharacters = []
     deadCharacters = []
 
@@ -15,6 +15,7 @@ class Game:
     def add_character(self, newChar):
         self.currentCharacters.append(newChar)
         save_game_current(self.currentCharacters)
+        self.active_character = newChar
 
     def save_characters(self):
         save_game_current(self.currentCharacters)

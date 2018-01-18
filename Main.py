@@ -1,20 +1,16 @@
 import sys
 import time
-#import winsound
+import winsound
 from Game import Game
 from LoadGame import load_game_characters
 from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
-
 from Map import Map
 
-
-
-
 def welcomeMenu ():
-#    winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
+    winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
     print('******************************\n'"Welcome to our Dungeon Run game!" '\n******************************\n')
     time.sleep(0.5)
     clear_screen()
@@ -32,7 +28,7 @@ def welcomeMenu ():
     print('______________________________________________________________________________________________')
     time.sleep(0.5)
     input("Press any key to start the game")
-  ##   winsound.PlaySound(None, winsound.SND_PURGE)
+    winsound.PlaySound(None, winsound.SND_PURGE)
     welcome()
     return
 
@@ -86,19 +82,16 @@ def createCharacter(number):
         if number =="1":
             new_wizard = Wizard(character_name)
             newGame.add_character(new_wizard)
-            print("Character created. Quiting")
             mapMenu(character_name, "1")
 
         elif number =="2":
             new_Knight = Knight(character_name)
             newGame.add_character(new_Knight)
-            print("Character created. Quiting")
             mapMenu(character_name, "2")
 
         elif number == "3":
             new_thief = Thief(character_name)
             newGame.add_character(new_thief)
-            print("Character created. Quiting")
             mapMenu(character_name, "3")
 
 def createMenu ():
@@ -127,6 +120,9 @@ def createMenu ():
         elif choice_start_game == "5":
             welcome()
 
+        else:
+            print ("Wrong choise, try again")
+
 
 def select_character():
     clear_screen()
@@ -148,7 +144,7 @@ def select_character():
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
-                    exit()
+                    mapMenu(newGame.active_character.name, newGame.active_character.to_String())
 
         except(ValueError):
             print("Wrong choice")
@@ -282,24 +278,14 @@ def startPosition(maxSize):
             startingPos = maxSize - 1, 0
         elif choice == "4":
             startingPos = maxSize - 1, maxSize - 1
-
-
         else:
             print("Wrong Input.")
 
         return startingPos
 
-
-
-
-
-
-
 # Menu: You are this character,  Which map size do you want to have?
 def mapMenu(name, typeOfCharacter):
     clear_screen()
-
-
 
     def foorLoop():
         if typeOfCharacter == "1":
@@ -311,25 +297,21 @@ def mapMenu(name, typeOfCharacter):
         else:
             print("Error")
 
-
     result = foorLoop()
 
-
-
-    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""5. Go back \n")
+    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n"" Or \n""4. Go back \n")
     size = mapSize()
     newMap = Map(size, startPosition(size))
     newMap.print_map()
-
+    finish_dungeon()
 
 def mapSize():
     while True:
-
         choice_size_map = input("\n Your choice: ")
         # Size small
         if choice_size_map == "1":
-
             return 4
+
 
         # Size medium
         elif choice_size_map == "2":
@@ -339,46 +321,36 @@ def mapSize():
         elif choice_size_map == "3":
             return 8
 
-        # Select start position
-        elif choice_size_map == "4":
-            pass
-
         # Go back
-        elif choice_size_map == "5":
-            createCharacter()
-
+        elif choice_size_map == "4":
+            createMenu()
 
         else:
             print("Try again")
             input("Press any key to continue")
             welcomeMenu()
 
-
-
-
 def finish_dungeon():
-    print("You manage to get out of the dungeon.\nYou are carrying %d gold with you".format(newGame.active_character.treasure_caried))
+    print("You manage to get out of the dungeon.\nYou are carrying "+ str(newGame.active_character.treasure_carried)+" gold with you")
     newGame.active_character.earn_treasure()
     newGame.save_characters()
-    print("Your total wealth are now %d gold!".format(newGame.active_character.treasure_saved))
+    print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
     input("\n\nPress key to continue")
     while True:
         clear_screen()
-        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3. Exit ")
+        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3.  Exit ")
         end_game_choice = input("Your choice :")
         if end_game_choice == "1":
-            mapMenu()
+            mapMenu(newGame.active_character.name, newGame.active_character.to_String())
         elif end_game_choice == "2":
             newGame.active_character = None
+            welcome()
         elif end_game_choice == "3":
             result = finish()
             if result == False:
                 welcome()
         else:
-           print("Wrong choice")
-
-
-
+           input("Wrong choice. Press any key to continue!")
 
 currentCharacters, deadCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters)
