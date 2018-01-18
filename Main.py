@@ -264,22 +264,23 @@ def more_info():
         more_info()
 
 def startPosition(maxSize):
+    clear_screen()
 
     while True:
-        print("Choose starting position,\n 1: North West \n 2: North East. \n 3: South West \n 4: South East  ")
+        print("Choose start position: \n 1: North West \n 2: North East \n 3: South West \n 4: South East \n 5: Go back ")
         choice = input("\n Your choice: ")
         if choice == "1":
             startingPos = 0,0
-
         elif choice == "2":
             startingPos = 0,maxSize -1
-            print(maxSize)
         elif choice == "3":
             startingPos = maxSize - 1, 0
         elif choice == "4":
             startingPos = maxSize - 1, maxSize - 1
+        elif choice == "5":
+            mapSize()
         else:
-            print("Wrong Input.")
+            input("Wrong input. Press any key to continue")
 
         return startingPos
 
@@ -311,8 +312,6 @@ def mapSize():
         # Size small
         if choice_size_map == "1":
             return 4
-
-
         # Size medium
         elif choice_size_map == "2":
             return 5
@@ -331,6 +330,7 @@ def mapSize():
             welcomeMenu()
 
 def finish_dungeon():
+    clear_screen()
     print("You manage to get out of the dungeon.\nYou are carrying "+ str(newGame.active_character.treasure_carried)+" gold with you")
     newGame.active_character.earn_treasure()
     newGame.save_characters()
