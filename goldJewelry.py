@@ -13,5 +13,5 @@ class goldJewelry(Items):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "Golden jewelry has always been your favorite. And now you own one more golden necklace.."
+        returnValue = "golden jewelry has always been your favorite kind...and now you own one more golden necklace!"
         return returnValue

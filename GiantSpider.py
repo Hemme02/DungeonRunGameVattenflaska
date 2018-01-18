@@ -11,9 +11,9 @@ class GiantSpider(Character):
         Character.__init__(self, initiative_, endurance_, attack_, agility_, rarity_)
 
     def toString(self):
-        returnValue = "a Giant Spider"
+        returnValue = "A giant Spider hisses at you!"
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "From above a giant mass emerges the darkness, a giant spider attacks you!"
+        returnValue = "a giant mass merge from the darkness, the giant spider attacks you!"
         return returnValue

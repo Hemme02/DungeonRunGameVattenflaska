@@ -11,9 +11,10 @@ class Orc(Character):
         Character.__init__(self, initiative_, endurance_, attack_, agility_, rarity_)
 
     def toString(self):
-        returnValue = "a green skinned Orc with a large club charges!"
+        returnValue = "A smelly green Orc with a large club charges!"
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "An Orc looks up from his meal and smiles drooling at you before heafting his large club and swings it towards your head"
+        returnValue = "an Orc looks up from his meal and smiles while drooling at you before \n" \
+                        "heafting his large club and swings it towards your head!"
         return returnValue

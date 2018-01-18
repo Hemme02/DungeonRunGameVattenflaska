@@ -9,9 +9,9 @@ class moneyBag(Items):
         Items.__init__(self,gold_, rarity_)
 
     def toString(self):
-        returnValue = "a bag of coins"
+        returnValue = "you find a bag of coins"
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "Someone has dropped their bag of coins. Finders keepers!"
+        returnValue = "someone has dropped their bag of coins. Finders keepers!"
         return returnValue

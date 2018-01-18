@@ -11,10 +11,10 @@ class Troll(Character):
         Character.__init__(self, initiative_, endurance_, attack_, agility_, rarity_)
 
     def toString(self):
-        returnValue = "A giant troll looks at you hungry."
+        returnValue = "A giant troll looking at you while drooling.."
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "Stirring a large pot a huge troll is cooking her dinner. She looks at you and smiles\n" \
+        returnValue = "a huge troll stirring her large pot in front of you. She looks at you and smiles\n" \
                       "You have a sinking feeling that she wants you in that pot while she swings her wooden club at you!"
         return returnValue

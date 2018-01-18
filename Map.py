@@ -46,26 +46,27 @@ class Map:
     def string_for_room_event(self, enteredRoom):
         string_to_return = ""
         if self.start:
-            string_to_return = "You enter the dungeon and it is dark."
+            string_to_return = "** You enter the dungeon and it is very dark.. **"
             self.start = False
             self.actual_map[self.player_y][self.player_x].clear_room()
         elif len(enteredRoom.aliveMonsters) == 0 and len(enteredRoom.existingItems) == 0:
             if enteredRoom.exit:
-                string_to_return = "You have found the exit of the dungeon!"
+                string_to_return = "** You have found the exit of the dungeon! **"
             elif enteredRoom.cleared:
-                string_to_return = "You can see your boot tracks on the floor. You have already been here."
+                string_to_return = "You can see your boot tracks on the ground. You have already been here.."
             else:
-                string_to_return = "The room you entered looks empty"
+                string_to_return = "** The room you entered looks empty.. **"
                 self.actual_map[self.player_y][self.player_x].clear_room()
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) == 0:
-            string_to_return = "The room is empty of monsters but, "+ enteredRoom.printTreasure()
+            string_to_return = "The room is empty of monsters but  \n" + enteredRoom.printTreasure()
 
         elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
-            string_to_return = "You enter a room and when you look around you see. " + enteredRoom.printMobs()
+            string_to_return = "You enter a room and when you look around you see \n" + enteredRoom.printMobs()
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
-            string_to_return = "You see something shiny but your attention is quickly drawn elsewhere ," + enteredRoom.printMobs()
+            string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
+                               "in front of the treasures you see \n" + enteredRoom.printMobs()
 
 
         return string_to_return
@@ -134,7 +135,7 @@ class Map:
 
 
         while True and not self.exited_map:
-            print("\nWhere do you want to go: ")
+            print("\n\nWhere do you want to go: ")
 
             if(current_room_y != 0 and current_room_y != max_room) and (current_room_x != 0 and current_room_x != max_room):
                 if current_room_complete.exit:
