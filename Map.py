@@ -11,6 +11,8 @@ class Map:
         self.place_exit()
         self.place_player()
         self.exited_map = False
+        self.start_y, self.start_x = player_position_
+        self.start = True
 
 
 
@@ -35,7 +37,7 @@ class Map:
                 continue
             else:
                 break
-        self.actual_map[x][y].exitRoom()
+        self.actual_map[y][x].exitRoom()
 
 
     def place_player(self):
@@ -43,17 +45,18 @@ class Map:
 
     def string_for_room_event(self, enteredRoom):
         string_to_return = ""
-        if len(enteredRoom.aliveMonsters) == 0 and len(enteredRoom.existingItems) == 0:
-            if not (enteredRoom.visited or enteredRoom.exit):
+        if self.start:
+            string_to_return = "You enter the dungeon and it is dark."
+            self.start = False
+            self.actual_map[self.player_y][self.player_x].clear_room()
+        elif len(enteredRoom.aliveMonsters) == 0 and len(enteredRoom.existingItems) == 0:
+            if enteredRoom.exit:
+                string_to_return = "You have found the exit of the dungeon!"
+            elif enteredRoom.cleared:
+                string_to_return = "You can see your boot tracks on the floor. You have already been here."
+            else:
                 string_to_return = "The room you entered looks empty"
                 self.actual_map[self.player_y][self.player_x].clear_room()
-            else:
-                if enteredRoom.cleared:
-                    string_to_return = "You can see your boot tracks on the floor. You have already been here."
-                elif enteredRoom.exit:
-                    string_to_return = "You have found the exit of the dungeon!"
-                else:
-                    string_to_return = "You enter to continue the fight against "+ enteredRoom.printMobs()
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) == 0:
             string_to_return = "The room is empty of monsters but, "+ enteredRoom.printTreasure()
@@ -104,10 +107,12 @@ class Map:
             print("\n"+"-"*(self.size*5))
             for x in range(0, self.size):
                 room = self.actual_map[y][x]
-                if room.visited and not (self.player_y == y and self.player_x == x):
+                if room.visited and not ((self.player_y == y and self.player_x == x) or room.exit):
                     print('' + "| _ |", end='')
                 elif self.player_y == y and self.player_x == x:
                     print('' + "| P |" , end="")
+                elif room.exit and room.visited:
+                    print('' + "| E |", end="")
                 else:
                     print('' + "| X |", end='')
 

@@ -25,14 +25,13 @@ class Room:
     def roomGenerator(self):
         self.monsterGenerator()
         self.itemGenerator()
-        if len(self.aliveMonsters) == 0:
-            self.cleared = True
 
 #Function that clear the room and turn it into a exit-room.
     def exitRoom(self):
         self.existingItems = []
         self.aliveMonsters = []
         self.exit = True
+        self.cleared = True
 
 # Function that clears the room, turn visited to true, then creates a starting-room.
     def startingRoom(self):

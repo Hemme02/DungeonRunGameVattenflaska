@@ -136,11 +136,11 @@ def select_character():
         try:
             while True:
                 character_choice =int(input("\nYour choice: "))
-                if character_choice > (len(newGame.currentCharacters)+2) or character_choice <= 0:
-                    print("Wrong choice")
-                    continue
+                if character_choice > (len(newGame.currentCharacters)+1) or character_choice <= 0:
+                    input("No character with that number!\nPress any key to continue.")
+                    select_character()
                 elif(character_choice == len(newGame.currentCharacters)+1):
-                    welcomeMenu()
+                    welcome()
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
@@ -148,7 +148,7 @@ def select_character():
 
         except(ValueError):
             print("Wrong choice")
-            welcomeMenu()
+            welcome()
     else:
         print("No alive characters to choose from. You have to create a new one.")
         input("Press any key to continue")
@@ -278,7 +278,7 @@ def startPosition(maxSize):
         elif choice == "4":
             startingPos = maxSize - 1, maxSize - 1
         elif choice == "5":
-            mapSize()
+            mapMenu(newGame.active_character.name, newGame.active_character.to_String())
         else:
             input("Wrong input. Press any key to continue")
 
