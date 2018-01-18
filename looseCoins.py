@@ -13,5 +13,5 @@ class looseCoins(Items):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "a few coins are spread out around the floor"
+        returnValue = "A few coins are spread out around the floor.."
         return returnValue

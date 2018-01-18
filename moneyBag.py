@@ -13,5 +13,5 @@ class moneyBag(Items):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "someone has dropped their bag of coins. Finders keepers!"
+        returnValue = "Someone has dropped their bag of coins. Finders keepers!"
         return returnValue

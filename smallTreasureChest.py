@@ -13,5 +13,5 @@ class smallTreasureChest(Items):
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "on the floor sits a chest full of valuable items. This is what you have been looking for."
+        returnValue = "On the floor sits a chest full of valuable items, this is what you have been looking for."
         return returnValue

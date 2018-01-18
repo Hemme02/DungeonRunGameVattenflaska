@@ -11,10 +11,10 @@ class Skeleton(Character):
         Character.__init__(self, initiative_, endurance_, attack_, agility_, rarity_)
 
     def toString(self):
-        returnValue = "An undead warrior turns and attacks you!"
+        returnValue = "an undead warrior turns and attacks you!"
         return returnValue
 
     def toStringSingle(self):
-        returnValue = "as you regard the graves along the wall you hear a noise behind you." \
+        returnValue = "As you regard the graves along the wall you hear a noise behind you." \
                       "\nWhen you turn a skeleton wielding a sword attacks you!"
         return returnValue

@@ -16,5 +16,5 @@ class Troll(Character):
 
     def toStringSingle(self):
         returnValue = "Stirring a large pot a huge troll is cooking her dinner. She looks at you and smiles\n" \
-                      "You have a sinking feeling that she wants you in that pot. Then she swings here wooden club at you!"
+                      "You have a sinking feeling that she wants you in that pot while she swings her wooden club at you!"
         return returnValue
