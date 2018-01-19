@@ -126,6 +126,7 @@ class Room:
 
     def printTreasure(self):
         if len(self.existingItems) > 1:
-            return self.printSingleTreasure()
-        else:
             return self.printListOfTreasuer()
+        else:
+            return self.printSingleTreasure()
+
