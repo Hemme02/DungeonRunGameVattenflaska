@@ -1,5 +1,6 @@
 import random
 
+
 def dice_throw(number_of_dices):
     result = 0
 
