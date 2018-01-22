@@ -14,8 +14,6 @@ class Map:
         self.start_y, self.start_x = player_position_
         self.start = True
 
-
-
     def createMap(self):
         map_list = []
         for i in range(self.size):
@@ -236,8 +234,6 @@ class Map:
                     self.exited_map = True
                     return
         return
-
-
 
     def player_event(self):
         actual_position = self.actual_map[self.player_y][self.player_x]

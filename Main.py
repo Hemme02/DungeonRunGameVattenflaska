@@ -7,6 +7,9 @@ from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
+from AIKnight import AIKnight
+from AITheif import AIThief
+from AIWizard import AIWizard
 from Map import Map
 
 def welcomeMenu ():
@@ -29,8 +32,17 @@ def welcomeMenu ():
     time.sleep(0.5)
     input("Press any key to start the game")
     winsound.PlaySound(None, winsound.SND_PURGE)
-    welcome()
+    createAI()
     return
+
+def createAI ():
+    new_AIWizard = AIWizard()
+    new_AITheif = AIThief()
+    new_AIKnight = AIKnight()
+    newGame.add_character_ai(new_AIWizard)
+    newGame.add_character_ai(new_AITheif)
+    newGame.add_character_ai(new_AIKnight)
+    welcome()
 
 def finish():
     answer = input("Do you really want to exit? yes/no:")
@@ -41,25 +53,47 @@ def finish():
 
 def welcome():
     clear_screen()
-    print( "\nMenu\nPlease choose one of the following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Exit\n")
+    print( "\nMenu\nPlease choose one of the following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Play as AI\n""4. Exit\n")
 
     while True:
         choice = input("Your choice: ")
         if choice == "1":
             createMenu()
         elif choice == "2":
-
             select_character()
         elif choice == "3":
+            aiMenu()
+        elif choice == "4":
             result = finish()
             if result == False:
                 welcome()
-        elif choice == "4":
-            welcomeMenu()
         else:
             print ("\nWrong number. Choose one between 1-3")
             input("Press any key to continue")
             welcome()
+
+def aiMenu():
+    clear_screen()
+    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Play as a Wizard\n""2. Play as a Thief \n""3. Play as a Knight \n""4. See statistic\n""5. Go back\n")
+    while True:
+        choice = input("Your choice: ")
+        if choice == "1":
+            mapMenu("AI", "1")
+        elif choice == "2":
+            mapMenu("AI", "3")
+        elif choice == "3":
+            mapMenu("AI", "2")
+        elif choice == "4":
+            print ("Here is the statistic")
+            input("Press any key to continue")
+            aiMenu()
+            #TODO gör statistik + en tillbakaknapp
+        elif choice == "5":
+            welcome()
+        else:
+            print("\nWrong number. Choose one between 1-3")
+            input("Press any key to continue")
+            aiMenu()
 
 def menuToStartGame():
     clear_screen()
@@ -122,7 +156,6 @@ def createMenu ():
 
         else:
             print ("Wrong choice, try again!")
-
 
 def select_character():
     clear_screen()
@@ -300,7 +333,12 @@ def mapMenu(name, typeOfCharacter):
 
     result = foorLoop()
 
-    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+    if name == "AI":
+        print("\nYou are playing AI as a "+ result +"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+        #TODO: här ska AI gå annan  (just nu går den till mapSize och exempelvis go back går tillbaka till welcome, inte ai welcome)
+    else:
+        print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+
     size = mapSize()
     newMap = Map(size, startPosition(size))
     newMap.print_map()
@@ -352,8 +390,8 @@ def finish_dungeon():
         else:
            input("Wrong choice. Press any key to continue!")
 
-currentCharacters, deadCharacters = load_game_characters()
-newGame = Game(currentCharacters, deadCharacters)
+currentCharacters, deadCharacters, aiCharacters = load_game_characters()
+newGame = Game(currentCharacters, deadCharacters, aiCharacters)
 welcomeMenu()
 size = mapSize()
 Map(size,startPosition(size))
