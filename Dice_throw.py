@@ -1,4 +1,5 @@
 import random
+from GiantSpider import GiantSpider
 
 
 def dice_throw(number_of_dices):
