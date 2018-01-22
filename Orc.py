@@ -8,7 +8,7 @@ class Orc(Character):
         agility_ = 4
         rarity_ = 10
         alive_ = True
-        Character.__init__(self, initiative_, endurance_, attack_, agility_, rarity_)
+        Character.__init__(self, "Orc", initiative_, endurance_, attack_, agility_)
 
     def toString(self):
         returnValue = "A smelly green Orc with a large club charges!"
