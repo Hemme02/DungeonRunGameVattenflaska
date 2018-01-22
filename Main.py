@@ -41,25 +41,47 @@ def finish():
 
 def welcome():
     clear_screen()
-    print( "\nMenu\nPlease choose one of the following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Exit\n")
+    print( "\nMenu\nPlease choose one of the following:\n" "1. Create a character & start an adventure\n""2. Continue with your saved character \n""3. Play as AI\n""4. Exit\n")
 
     while True:
         choice = input("Your choice: ")
         if choice == "1":
             createMenu()
         elif choice == "2":
-
             select_character()
         elif choice == "3":
+            aiMenu()
+        elif choice == "4":
             result = finish()
             if result == False:
                 welcome()
-        elif choice == "4":
-            welcomeMenu()
         else:
             print ("\nWrong number. Choose one between 1-3")
             input("Press any key to continue")
             welcome()
+
+def aiMenu():
+    clear_screen()
+    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Play as a Wizard\n""2. Play as a Thief \n""3. Play as a Knight \n""4. See statistic\n""5. Go back\n")
+    while True:
+        choice = input("Your choice: ")
+        if choice == "1":
+            mapMenu("AI", "1")
+        elif choice == "2":
+            mapMenu("AI", "3")
+        elif choice == "3":
+            mapMenu("AI", "2")
+        elif choice == "4":
+            print ("Here is the statistic")
+            input("Press any key to continue")
+            aiMenu()
+            #TODO gör statistik + en tillbakaknapp
+        elif choice == "5":
+            welcome()
+        else:
+            print("\nWrong number. Choose one between 1-3")
+            input("Press any key to continue")
+            aiMenu()
 
 def menuToStartGame():
     clear_screen()
@@ -122,7 +144,6 @@ def createMenu ():
 
         else:
             print ("Wrong choice, try again!")
-
 
 def select_character():
     clear_screen()
@@ -300,7 +321,12 @@ def mapMenu(name, typeOfCharacter):
 
     result = foorLoop()
 
-    print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+    if name == "AI":
+        print("\nYou are playing AI as a "+ result +"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+        #TODO: här ska AI gå annan väg
+    else:
+        print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+
     size = mapSize()
     newMap = Map(size, startPosition(size))
     newMap.print_map()
