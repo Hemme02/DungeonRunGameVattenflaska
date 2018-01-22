@@ -7,6 +7,9 @@ from classKnight import Knight
 from classWizard import Wizard
 from Clear import clear_screen
 from classThief import Thief
+from AIKnight import AIKnight
+from AITheif import AIThief
+from AIWizard import AIWizard
 from Map import Map
 
 def welcomeMenu ():
@@ -29,8 +32,17 @@ def welcomeMenu ():
     time.sleep(0.5)
     input("Press any key to start the game")
     winsound.PlaySound(None, winsound.SND_PURGE)
-    welcome()
+    createAI()
     return
+
+def createAI ():
+    new_AIWizard = AIWizard()
+    new_AITheif = AIThief()
+    new_AIKnight = AIKnight()
+    newGame.add_character_ai(new_AIWizard)
+    newGame.add_character_ai(new_AITheif)
+    newGame.add_character_ai(new_AIKnight)
+    welcome()
 
 def finish():
     answer = input("Do you really want to exit? yes/no:")
@@ -323,7 +335,7 @@ def mapMenu(name, typeOfCharacter):
 
     if name == "AI":
         print("\nYou are playing AI as a "+ result +"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
-        #TODO: här ska AI gå annan väg
+        #TODO: här ska AI gå annan  (just nu går den till mapSize och exempelvis go back går tillbaka till welcome, inte ai welcome)
     else:
         print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
 
@@ -378,8 +390,8 @@ def finish_dungeon():
         else:
            input("Wrong choice. Press any key to continue!")
 
-currentCharacters, deadCharacters = load_game_characters()
-newGame = Game(currentCharacters, deadCharacters)
+currentCharacters, deadCharacters, aiCharacters = load_game_characters()
+newGame = Game(currentCharacters, deadCharacters, aiCharacters)
 welcomeMenu()
 size = mapSize()
 Map(size,startPosition(size))
