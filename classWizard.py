@@ -3,7 +3,7 @@ from characterClass import Character
 
 class Wizard(Character):
     treasure_saved = 0
-    treasure_carried = 0
+    treasure_carried = []
 
     def __init__(self, name_):
         initiative_ = 6
@@ -15,7 +15,7 @@ class Wizard(Character):
 
     def earn_treasure(self):
         self.treasure_saved += self.treasure_carried
-        self.treasure_carried = 0
+        self.treasure_carried = []
 
     def to_String(self):
         return("1")

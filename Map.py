@@ -4,7 +4,7 @@ from Clear import clear_screen
 
 class Map:
 
-    def __init__(self, size_, player_position_):
+    def __init__(self, size_, player_position_,carried_treasure_):
         self.size = size_
         self.player_y, self.player_x = player_position_
         self.actual_map = self.createMap()
@@ -13,6 +13,7 @@ class Map:
         self.exited_map = False
         self.start_y, self.start_x = player_position_
         self.start = True
+        self.carried_treasure = carried_treasure_
 
     def createMap(self):
         map_list = []
@@ -243,8 +244,11 @@ class Map:
             #TODO start fight
 
         elif len(actual_position.existingItems) != 0:
-            self.move_player()
             #TODO pick up treasure
+            for items in actual_position.existingItems:
+                self.carried_treasure.append(items)
+            actual_position.existingItems = []
+            self.move_player()
 
         else:
             self.move_player()
