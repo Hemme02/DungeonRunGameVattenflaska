@@ -1,5 +1,5 @@
 import random
-
+import time
 from characterClass import Character
 import roomClass
 from Clear import clear_screen
@@ -17,7 +17,7 @@ class Map:
         self.exited_map = False
         self.start_y, self.start_x = player_position_
         self.start = True
-        self.carried_treasure = carried_treasure_
+        self.old_room = ""
         self.active_character = active_character
 
 
@@ -73,8 +73,7 @@ class Map:
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
-            #input("try flee")
-            #self.try_flee()
+
 
 
 
@@ -86,28 +85,33 @@ class Map:
         max_size = self.size - 1
 
         if move.lower() == "up" and self.player_y != 0:
+            self.old_room = "down"
             self.player_y = self.player_y - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
             self.print_map()
             valid_move = True
 
         elif move.lower() == "down" and self.player_y != max_size:
+            self.old_room = "up"
             self.player_y = self.player_y + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
             self.print_map()
             valid_move = True
 
         elif move.lower() == "left" and self.player_x != 0:
+            self.old_room = "right"
             self.player_x = self.player_x - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
             self.print_map()
             valid_move = True
 
         elif move.lower() == "right" and self.player_x != max_size:
+            self.old_room = "left"
             self.player_x = self.player_x + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
             self.print_map()
             valid_move = True
+
 
         return valid_move
 
@@ -275,8 +279,8 @@ class Map:
             try_to_flee = 80
 
         if dice_turn <= try_to_flee:
-            self.actual_map[self.player_y][self.player_x].visitedRoom()
             print("Escaped")
+            self.move_on_map(self.old_room)
             return True
 
         else:
