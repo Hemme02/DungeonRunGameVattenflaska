@@ -1,10 +1,14 @@
 import random
+
+from characterClass import Character
 import roomClass
 from Clear import clear_screen
+from classWizard import Wizard
+
 
 class Map:
 
-    def __init__(self, size_, player_position_,carried_treasure_):
+    def __init__(self, size_, player_position_,carried_treasure_, active_character):
         self.size = size_
         self.player_y, self.player_x = player_position_
         self.actual_map = self.createMap()
@@ -14,6 +18,8 @@ class Map:
         self.start_y, self.start_x = player_position_
         self.start = True
         self.carried_treasure = carried_treasure_
+        self.active_character = active_character
+
 
     def createMap(self):
         map_list = []
@@ -63,9 +69,13 @@ class Map:
         elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You enter a room and when you look around you see \n" + enteredRoom.printMobs()
 
+
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
+            #input("try flee")
+            #self.try_flee()
+
 
 
         return string_to_return
@@ -252,4 +262,24 @@ class Map:
 
         else:
             self.move_player()
+
+
+    def try_flee(self):
+
+        print("Trying to flee...")
+
+        try_to_flee = self.active_character.agility * 10
+        dice_turn = random.randrange(0, 100)
+
+        if self.active_character.class_type == "Wizard":
+            try_to_flee = 80
+
+        if dice_turn <= try_to_flee:
+            self.actual_map[self.player_y][self.player_x].visitedRoom()
+            print("Escaped")
+            return True
+
+        else:
+            print("Failed to escape")
+            return False
 

@@ -11,6 +11,9 @@ from AIKnight import AIKnight
 from AITheif import AIThief
 from AIWizard import AIWizard
 from Map import Map
+from characterClass import Character
+from itemClass import Items
+
 
 def welcomeMenu ():
     winsound.PlaySound("intro.wav", winsound.SND_ASYNC)
@@ -116,16 +119,19 @@ def createCharacter(number):
         if number =="1":
             new_wizard = Wizard(character_name)
             newGame.add_character(new_wizard)
+            newGame.active_character = new_wizard
             mapMenu(character_name, "1")
 
         elif number =="2":
             new_Knight = Knight(character_name)
             newGame.add_character(new_Knight)
+            newGame.active_character = new_Knight
             mapMenu(character_name, "2")
 
         elif number == "3":
             new_thief = Thief(character_name)
             newGame.add_character(new_thief)
+            newGame.active_character = new_thief
             mapMenu(character_name, "3")
 
 def createMenu ():
@@ -340,7 +346,10 @@ def mapMenu(name, typeOfCharacter):
         print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
 
     size = mapSize()
-    newMap = Map(size, startPosition(size))
+
+
+
+    newMap = Map(size, startPosition(size),None, newGame.active_character)
     newMap.print_map()
     finish_dungeon()
 
@@ -394,6 +403,9 @@ currentCharacters, deadCharacters, aiCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters, aiCharacters)
 welcomeMenu()
 size = mapSize()
-Map(size,startPosition(size))
+
+
+
+Map(size,startPosition(size),None,newGame.active_character)
 
 

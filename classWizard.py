@@ -4,6 +4,8 @@ from characterClass import Character
 class Wizard(Character):
     treasure_saved = 0
     treasure_carried = []
+    class_type = "Wizard"
+
 
     def __init__(self, name_):
         initiative_ = 6
@@ -11,6 +13,7 @@ class Wizard(Character):
         attack_ = 9
         agility_ = 5
         Character.__init__(self, name_, initiative_, endurance_, attack_, agility_)
+
 
 
     def earn_treasure(self):
