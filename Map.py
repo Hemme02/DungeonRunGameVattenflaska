@@ -248,35 +248,32 @@ class Map:
         return
 
     def player_event(self):
+
         actual_position = self.actual_map[self.player_y][self.player_x]
 
         if len(actual_position.aliveMonsters) != 0:
-            print("monster")
+
             self.print_map()
             #TODO start fight
 
         elif len(actual_position.existingItems) != 0:
-            #TODO pick up treasure
-            print("pick up item")
+
             self.PickUpItems()
             self.print_map()
 
         else:
-            print("Tomt")
             self.print_map()
 
     def PickUpItems(self):
-        print("Func for pick up")
+
         actual_position = self.actual_map[self.player_y][self.player_x]
         for items in actual_position.existingItems:
             self.active_character.treasure_carried.append(items)
 
-        print(self.active_character.treasure_carried)
         actual_position.existingItems = []
 
-    def try_flee(self):
 
-        print("Trying to flee...")
+    def try_flee(self):
 
         try_to_flee = self.active_character.agility * 10
         dice_turn = random.randrange(0, 100)
