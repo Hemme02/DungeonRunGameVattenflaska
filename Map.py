@@ -6,6 +6,7 @@ from Clear import clear_screen
 from classWizard import Wizard
 
 
+
 class Map:
 
     def __init__(self, size_, player_position_,carried_treasure_, active_character):
@@ -88,28 +89,24 @@ class Map:
             self.old_room = "down"
             self.player_y = self.player_y - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "down" and self.player_y != max_size:
             self.old_room = "up"
             self.player_y = self.player_y + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "left" and self.player_x != 0:
             self.old_room = "right"
             self.player_x = self.player_x - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "right" and self.player_x != max_size:
             self.old_room = "left"
             self.player_x = self.player_x + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
 
@@ -254,19 +251,28 @@ class Map:
         actual_position = self.actual_map[self.player_y][self.player_x]
 
         if len(actual_position.aliveMonsters) != 0:
-            self.move_player()
+            print("monster")
+            self.print_map()
             #TODO start fight
 
         elif len(actual_position.existingItems) != 0:
             #TODO pick up treasure
-            for items in actual_position.existingItems:
-                self.carried_treasure.append(items)
-            actual_position.existingItems = []
-            self.move_player()
+            print("pick up item")
+            self.PickUpItems()
+            self.print_map()
 
         else:
-            self.move_player()
+            print("Tomt")
+            self.print_map()
 
+    def PickUpItems(self):
+        print("Func for pick up")
+        actual_position = self.actual_map[self.player_y][self.player_x]
+        for items in actual_position.existingItems:
+            self.active_character.treasure_carried.append(items)
+
+        print(self.active_character.treasure_carried)
+        actual_position.existingItems = []
 
     def try_flee(self):
 
