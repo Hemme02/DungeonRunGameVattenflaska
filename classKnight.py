@@ -11,6 +11,8 @@ class Knight(Character):
         endurance_ = 9
         attack_ = 6
         agility_ = 4
+        AI = False
+        IsAlive
         Character.__init__(self,name_, initiative_, endurance_, attack_, agility_)
 
 
