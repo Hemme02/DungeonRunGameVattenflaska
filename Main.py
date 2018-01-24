@@ -383,7 +383,7 @@ def mapSize():
 def finish_dungeon():
     if not newGame.active_character.IsAlive:
         newGame.save_characters()
-
+        newGame.active_character = None
         welcome()
     else:
         clear_screen()
