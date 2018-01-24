@@ -46,7 +46,7 @@ class AIThief(Character):
 
 
     def multiMath(self):
-        pass
+        print ("HEj")
 
 
     def thiefStatisticsTotal(self):

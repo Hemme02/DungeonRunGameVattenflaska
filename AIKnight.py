@@ -46,7 +46,8 @@ class AIKnight(Character):
 
 
     def multiMath(self):
-        pass
+        print ("HEj")
+
 
 
     def thiefStatisticsTotal(self):
@@ -60,3 +61,4 @@ class AIKnight(Character):
         self.roomAmounts = 0
         self.totalEnemies += self.enemiesKilled
         self.enemiesKilled = 0
+

@@ -46,7 +46,7 @@ class AIWizard(Character):
 
 
     def multiMath(self):
-        pass
+        print ("HEj")
 
 
     def thiefStatisticsTotal(self):
