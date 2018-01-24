@@ -1,9 +1,14 @@
 from Dice_throw import dice_throw
+from random import randint
 
 def startFight(player, monsters):
 
     list_of_monsters = monsters
     toFlee = Map.flee
+
+    #Soldier blockar första slaget varje combat
+    #denna sätts till false efter första gången
+    startFight.soldier_special = True
 
 
     def turn_taking(player, monsters):
@@ -48,12 +53,16 @@ def startFight(player, monsters):
         else:
             print("Must enter a valid input")
 
-    def player_attack(fighter, target):
-        player_atk = dice_throw(fighter.attack)
+    def player_attack(player, target):
+        player_atk = dice_throw(player.attack)
         target_agil = dice_throw(target.agillity)
         if player_atk >= target_agil:
-            print("Attack hit")
-            target.durability -= 1
+            if player.subtype == "Thief" and randint(1, 100) <= 25:
+                print("Double strike hit for 2 durability")
+                target.durability -= 2
+            else:
+                print("Attack hit")
+                target.durability -= 1
             if target.durability <= 0:
                 print("you've killed" + target)
                 list_of_monsters.remove(target)
@@ -65,10 +74,15 @@ def startFight(player, monsters):
         player_agil = dice_throw(fighter.agillity)
 
         if monster_atk > player_agil:
-            print(target + " hit you for 1 durability")
-            fighter.durability -= 1
-            if fighter.durability <= 0:
-                playerisDead
+
+            if player.subtype == "Knight" and startFight.soldier_special:
+                print("Shield blocked the attack, you take no damage")
+                startFight.soldier_special = False
+            else:
+                print(target + " hit you for 1 durability")
+                fighter.durability -= 1
+                if fighter.durability <= 0:
+                    playerisDead
         else:
             print(target + " Missed!")
 
