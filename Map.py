@@ -1,5 +1,7 @@
 import random
-import time
+
+import sys
+
 from characterClass import Character
 import roomClass
 from Clear import clear_screen
@@ -9,7 +11,7 @@ from classWizard import Wizard
 
 class Map:
 
-    def __init__(self, size_, player_position_,carried_treasure_, active_character):
+    def __init__(self, size_, player_position_, active_character,game_):
         self.size = size_
         self.player_y, self.player_x = player_position_
         self.actual_map = self.createMap()
@@ -20,6 +22,8 @@ class Map:
         self.start = True
         self.old_room = ""
         self.active_character = active_character
+        self.game = game_
+
 
 
     def createMap(self):
@@ -264,10 +268,13 @@ class Map:
         else:
             self.print_map()
 
+
     def PickUpItems(self):
+
 
         actual_position = self.actual_map[self.player_y][self.player_x]
         for items in actual_position.existingItems:
+            print("picked up")
             self.active_character.treasure_carried.append(items)
 
         actual_position.existingItems = []
@@ -289,4 +296,16 @@ class Map:
         else:
             print("Failed to escape")
             return False
+
+
+    def playerDeath(self):
+
+        print( "*** You have died ""***\n " + "The treasures you picked up during this run will be lost, all data will be saved.\n\n")
+        self.active_character.treasure_carried = 0
+        self.game.deadCharacters.append(self.game.currentCharacters)
+        self.game.save_characters()
+
+
+
+
 
