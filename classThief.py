@@ -11,13 +11,17 @@ class Thief(Character):
         endurance_ = 5
         attack_ = 5
         agility_ = 7
+        AI = False
+        IsAlive = True
         Character.__init__(self, name_, initiative_, endurance_, attack_, agility_)
 
 
 
     def earn_treasure(self):
-        self.treasure_saved += self.treasure_carried
+        for treasure in self.treasure_carried:
+            self.treasure_saved += treasure.gold
         self.treasure_carried = []
+
 
     def to_String(self):
         return ("3")

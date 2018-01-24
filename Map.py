@@ -1,14 +1,17 @@
 import random
 
+import sys
+
 from characterClass import Character
 import roomClass
 from Clear import clear_screen
 from classWizard import Wizard
 
 
+
 class Map:
 
-    def __init__(self, size_, player_position_,carried_treasure_, active_character):
+    def __init__(self, size_, player_position_, active_character,game_):
         self.size = size_
         self.player_y, self.player_x = player_position_
         self.actual_map = self.createMap()
@@ -17,8 +20,10 @@ class Map:
         self.exited_map = False
         self.start_y, self.start_x = player_position_
         self.start = True
-        self.carried_treasure = carried_treasure_
+        self.old_room = ""
         self.active_character = active_character
+        self.game = game_
+
 
 
     def createMap(self):
@@ -73,8 +78,7 @@ class Map:
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
-            #input("try flee")
-            #self.try_flee()
+
 
 
 
@@ -86,28 +90,29 @@ class Map:
         max_size = self.size - 1
 
         if move.lower() == "up" and self.player_y != 0:
+            self.old_room = "down"
             self.player_y = self.player_y - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "down" and self.player_y != max_size:
+            self.old_room = "up"
             self.player_y = self.player_y + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "left" and self.player_x != 0:
+            self.old_room = "right"
             self.player_x = self.player_x - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
 
         elif move.lower() == "right" and self.player_x != max_size:
+            self.old_room = "left"
             self.player_x = self.player_x + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
-            self.print_map()
             valid_move = True
+
 
         return valid_move
 
@@ -247,26 +252,35 @@ class Map:
         return
 
     def player_event(self):
+
         actual_position = self.actual_map[self.player_y][self.player_x]
 
         if len(actual_position.aliveMonsters) != 0:
-            self.move_player()
+
+            self.print_map()
             #TODO start fight
 
         elif len(actual_position.existingItems) != 0:
-            #TODO pick up treasure
-            for items in actual_position.existingItems:
-                self.carried_treasure.append(items)
-            actual_position.existingItems = []
-            self.move_player()
+
+            self.PickUpItems()
+            self.print_map()
 
         else:
-            self.move_player()
+            self.print_map()
+
+
+    def PickUpItems(self):
+
+
+        actual_position = self.actual_map[self.player_y][self.player_x]
+        for items in actual_position.existingItems:
+            print("picked up")
+            self.active_character.treasure_carried.append(items)
+
+        actual_position.existingItems = []
 
 
     def try_flee(self):
-
-        print("Trying to flee...")
 
         try_to_flee = self.active_character.agility * 10
         dice_turn = random.randrange(0, 100)
@@ -275,11 +289,23 @@ class Map:
             try_to_flee = 80
 
         if dice_turn <= try_to_flee:
-            self.actual_map[self.player_y][self.player_x].visitedRoom()
             print("Escaped")
+            self.move_on_map(self.old_room)
             return True
 
         else:
             print("Failed to escape")
             return False
+
+
+    def playerDeath(self):
+
+        print( "*** You have died ""***\n " + "The treasures you picked up during this run will be lost, all data will be saved.\n\n")
+        self.active_character.treasure_carried = 0
+        self.game.deadCharacters.append(self.game.currentCharacters)
+        self.game.save_characters()
+
+
+
+
 
