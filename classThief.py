@@ -13,6 +13,7 @@ class Thief(Character):
         agility_ = 7
         self.AI = False
         self.IsAlive = True
+        self.class_name = "Thief"
         Character.__init__(self, name_, initiative_, endurance_, attack_, agility_)
 
 

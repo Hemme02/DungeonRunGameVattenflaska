@@ -10,6 +10,7 @@ class AIKnight(Character):
         attack_ = 6
         agility_ = 4
         self.AI = True
+        self.class_name = "Knight"
         self.run = 0
         self.runFinished = 0
         self.aiDead = 0

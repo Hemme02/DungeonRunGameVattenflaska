@@ -1,12 +1,8 @@
 import random
-
-import sys
-
-from characterClass import Character
+import time
 import roomClass
 from Clear import clear_screen
-from classWizard import Wizard
-
+from startFight import startFight
 
 
 class Map:
@@ -79,9 +75,7 @@ class Map:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
 
-
-
-
+        self.PickUpItems()
         return string_to_return
 
 
@@ -113,7 +107,8 @@ class Map:
             self.actual_map[self.player_y][self.player_x].visitedRoom()
             valid_move = True
 
-
+        if self.active_character.AI:
+            self.AI_event()
         return valid_move
 
     def print_map(self):
@@ -133,7 +128,7 @@ class Map:
 
         print("\n" + "-" * (self.size * 5))
         print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
-        self.move_player()
+
 
     def player_can_exit(self):
         if self.actual_map[self.player_y][self.player_x].exit:
@@ -256,29 +251,31 @@ class Map:
         actual_position = self.actual_map[self.player_y][self.player_x]
 
         if len(actual_position.aliveMonsters) != 0:
-            self.playerDeath()
-            #self.print_map()
-            #TODO start fight
+            self.print_map()
+            actual_position.aliveMonsters = startFight(self.active_character, actual_position.aliveMonsters, self)
+            if actual_position.aliveMonsters == 0:
+                print("You won the fight. You have "+str(self.active_character.endurance_) + " left.")
+                if actual_position.existingItems != 0:
+                    print("You find" + actual_position.printTreasure())
+                    self.print_map()
+                    self.move_player()
+                else:
+                    self.print_map()
+                    self.move_player()
 
         elif len(actual_position.existingItems) != 0:
-
-            #self.PickUpItems()
             self.print_map()
+            self.move_player()
 
         else:
             self.print_map()
+            self.move_player()
 
     def PickUpItems(self):
-        print("pick up")
         actual_position = self.actual_map[self.player_y][self.player_x]
         for items in actual_position.existingItems:
             self.active_character.treasure_carried.append(items)
-
-        print(self.active_character.treasure_carried)
         actual_position.existingItems = []
-
-
-
 
 
     def try_flee(self):
@@ -317,6 +314,83 @@ class Map:
 
         input("Press any key to continue!")
 
+    def AI_move(self):
+        self.print_map()
+        rooms = []
+        visited_room = []
+        max_int = self.size - 1
+
+        if self.player_y != 0:
+            rooms.append([self.actual_map[self.player_y - 1][self.player_x], "y", False])
+        if self.player_y != max_int:
+            rooms.append([self.actual_map[self.player_y + 1][self.player_x], "y", True])
+        if self.player_x != 0:
+            rooms.append([self.actual_map[self.player_y][self.player_x - 1], "x", False])
+        if self.player_x != max_int:
+            rooms.append([self.actual_map[self.player_y][self.player_x + 1], "x", True])
+
+        for i in range(len(rooms) - 1, -1, -1):
+            if rooms[i][0].visited:
+                visited_room.append(rooms[i])
+                rooms.pop(i)
+
+        if len(rooms) == 0:
+            random_choice = random.randint(0, len(visited_room) - 1)
+            room_to_go_to = visited_room[random_choice]
+
+        elif len(rooms) == 1:
+            room_to_go_to = rooms[0]
+
+        else:
+            random_choice = random.randint(0, len(rooms) - 1)
+            room_to_go_to = rooms[random_choice]
+
+        if room_to_go_to[1] == "y":
+            if room_to_go_to[2]:
+                self.move_on_map("down")
+            else:
+                self.move_on_map("up")
+
+        elif room_to_go_to[1] == "x":
+            if room_to_go_to[2]:
+                self.move_on_map("right")
+            else:
+                self.move_on_map("left")
+
+    def AI_event(self):
+        time.sleep(1)
+        current_room = self.actual_map[self.player_y][self.player_x]
+        if current_room.exit:
+            print("You found the exit")
+            return
+        else:
+            if current_room.aliveMonsters == 0 and current_room.existingItems == 0:
+                self.AI_move()
+            elif current_room.aliveMonsters == 0 and current_room.existingItems != 0:
+                self.AI_move()
+            else:
+                self.AI_move()
+                """
+                if self.active_character.endurance < 2:
+                    # TODO Flee
+                    self.AI_move()
+                elif self.active_character.endurance < 3:
+                    if len(current_room.aliveMonsters) > 1:
+                        # TODO Flee
+                        self.AI_move()
+                    elif len(current_room.aliveMonsters) == 1 and current_room.aliveMonsters[0].endurance_ > 2:
+
+                        # TODO Flee
+                        self.AI_move()
+                    else:
+                        self.AI_move()
+                        # TODO Fight
+                        if current_room.existingItems != 0:
+                            # TODO Plocka upp skatter
+                            self.AI_move()
+
+
+                        # TODO slåss mot monster"""
 
 
 

@@ -180,7 +180,7 @@ def select_character():
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
-                    mapMenu(newGame.active_character.name)
+                    mapMenu(newGame.active_character)
 
         except(ValueError):
             print("Wrong choice")
@@ -347,10 +347,14 @@ def mapMenu(character):
 
     newMap = Map(size, startPosition(size), newGame.active_character, newGame)
     if character.AI:
+        newMap.print_map()
+        print("Print funkar")
         newMap.AI_move()
+        finish_dungeon()
         #TODO, här kan man lägga in AI slutet
     else:
         newMap.print_map()
+        newMap.move_player()
         finish_dungeon()
 
 def mapSize():
@@ -378,9 +382,13 @@ def mapSize():
 
 def finish_dungeon():
     clear_screen()
-    print("You managed to get out of the dungeon.\nYou are carrying "+ str(newGame.active_character.treasure_carried)+" gold with you")
+    treasure_found = 0
+    for items in newGame.active_character.treasure_carried:
+        treasure_found += items.gold
+    print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
     newGame.active_character.earn_treasure()
     newGame.save_characters()
+
     print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
     input("\n\nPress key to continue")
     while True:
