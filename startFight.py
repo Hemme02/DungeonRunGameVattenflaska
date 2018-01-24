@@ -117,7 +117,7 @@ def startFight(player, monsters, map):
     while len(list_of_turn) > 1 and active_player.IsAlive:
         clear_screen()
         print("Turn_list")
-        for i in range(len(list_of_turn)):
+        for i in range(len(list_of_turn)-1,-1,-1):
             if list_of_turn[i][0].endurance <= 0:
                 list_of_turn.pop(i)
         for i in range(len(list_of_turn)):
@@ -126,7 +126,7 @@ def startFight(player, monsters, map):
         time.sleep(1)
         for creature in list_of_turn:
             if not active_player.IsAlive:
-                break
+                return list_of_monsters
             elif creature[0] == active_player:
                 player_action = player_combat_action(active_player, list_of_monsters)
                 if player_action == "flee":

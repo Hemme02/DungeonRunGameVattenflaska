@@ -69,11 +69,13 @@ class Map:
 
         elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You enter a room and when you look around you see \n" + enteredRoom.printMobs()
+            input("Press any key to continue")
 
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
+            input("Press any key to continue")
 
         self.PickUpItems()
         return string_to_return
@@ -257,7 +259,7 @@ class Map:
                 self.playerDeath()
             else:
                 if len(actual_position.aliveMonsters) == 0:
-                    print("You won the fight. You have "+str(self.active_character.endurance) + " left.")
+                    print("You won the fight. You have "+str(self.active_character.endurance) + " endurance left.")
                     input("Press any key to continue")
                     if len(actual_position.existingItems) != 0:
                         print("You find" + actual_position.printTreasure())
@@ -291,22 +293,21 @@ class Map:
 
 
     def playerDeath(self):
-
+        clear_screen()
 
         print( "*** You have died ""***\n " + "The treasures you picked up during this run will be lost, all data will be saved.\n\n")
         self.active_character.treasure_carried = []
-        self.game.deadCharacters.append(self.game.currentCharacters)
-        print(self.game.currentCharacters)
-        for i in range (len(self.game.currentCharacters)):
+        self.active_character.IsAlive = False
+        self.game.deadCharacters.append(self.game.active_character)
 
+        for i in range (len(self.game.currentCharacters)):
             if self.game.currentCharacters[i] == self.game.active_character:
                 self.game.currentCharacters.pop(i)
-                print(self.game.currentCharacters)
-                print(self.game.deadCharacters)
                 self.game.save_characters()
 
 
         input("Press any key to continue!")
+        return
 
     def AI_move(self):
         self.print_map()

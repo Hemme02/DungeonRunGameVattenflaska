@@ -381,31 +381,36 @@ def mapSize():
             welcomeMenu()
 
 def finish_dungeon():
-    clear_screen()
-    treasure_found = 0
-    for items in newGame.active_character.treasure_carried:
-        treasure_found += items.gold
-    print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
-    newGame.active_character.earn_treasure()
-    newGame.save_characters()
+    if not newGame.active_character.IsAlive:
+        newGame.save_characters()
 
-    print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
-    input("\n\nPress key to continue")
-    while True:
+        welcome()
+    else:
         clear_screen()
-        print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3.  Exit ")
-        end_game_choice = input("Your choice :")
-        if end_game_choice == "1":
-            mapMenu(newGame.active_character)
-        elif end_game_choice == "2":
-            newGame.active_character = None
-            welcome()
-        elif end_game_choice == "3":
-            result = finish()
-            if result == False:
+        treasure_found = 0
+        for items in newGame.active_character.treasure_carried:
+            treasure_found += items.gold
+        print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
+        newGame.active_character.earn_treasure()
+        newGame.save_characters()
+
+        print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
+        input("\n\nPress key to continue")
+        while True:
+            clear_screen()
+            print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3.  Exit ")
+            end_game_choice = input("Your choice :")
+            if end_game_choice == "1":
+                mapMenu(newGame.active_character)
+            elif end_game_choice == "2":
+                newGame.active_character = None
                 welcome()
-        else:
-           input("Wrong choice. Press any key to continue!")
+            elif end_game_choice == "3":
+                result = finish()
+                if result == False:
+                    welcome()
+            else:
+               input("Wrong choice. Press any key to continue!")
 
 currentCharacters, deadCharacters, aiCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters, aiCharacters)
