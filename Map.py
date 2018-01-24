@@ -253,18 +253,26 @@ class Map:
         if len(actual_position.aliveMonsters) != 0:
             self.print_map()
             actual_position.aliveMonsters = startFight(self.active_character, actual_position.aliveMonsters, self)
-            if actual_position.aliveMonsters == 0:
-                print("You won the fight. You have "+str(self.active_character.endurance_) + " left.")
-                if actual_position.existingItems != 0:
-                    print("You find" + actual_position.printTreasure())
+            if not self.active_character.IsAlive:
+                self.playerDeath()
+            else:
+                if len(actual_position.aliveMonsters) == 0:
+                    print("You won the fight. You have "+str(self.active_character.endurance) + " left.")
+                    input("Press any key to continue")
+                    if len(actual_position.existingItems) != 0:
+                        print("You find" + actual_position.printTreasure())
+                        self.print_map()
+                        self.move_player()
+                    else:
+                        self.print_map()
+                        self.move_player()
+                elif len(actual_position.aliveMonsters) > 0:
+                    self.move_on_map(self.old_room)
                     self.print_map()
                     self.move_player()
                 else:
                     self.print_map()
                     self.move_player()
-            else:
-                self.print_map()
-                self.move_player()
 
         elif len(actual_position.existingItems) != 0:
             self.print_map()
@@ -280,23 +288,6 @@ class Map:
             self.active_character.treasure_carried.append(items)
         actual_position.existingItems = []
 
-
-    def try_flee(self):
-
-        try_to_flee = self.active_character.agility * 10
-        dice_turn = random.randrange(0, 100)
-
-        if self.active_character.class_type == "Wizard":
-            try_to_flee = 80
-
-        if dice_turn <= try_to_flee:
-            print("Escaped")
-            self.move_on_map(self.old_room)
-            return True
-
-        else:
-            print("Failed to escape")
-            return False
 
 
     def playerDeath(self):

@@ -1,10 +1,8 @@
 import time
-
+import random
+from Clear import clear_screen
 from Dice_throw import dice_throw
-from random import randint
 
-
-from classKnight import Knight
 
 
 def startFight(player, monsters, map):
@@ -37,6 +35,22 @@ def startFight(player, monsters, map):
         return turn_list
         #########################################################################
 
+    def try_flee():
+
+        try_to_flee = active_player.agility * 10
+        dice_turn = random.randint(0, 100)
+
+        if active_player.class_type == "Wizard":
+            try_to_flee = 80
+
+        if dice_turn <= try_to_flee:
+            print("Escaped")
+            return True
+
+        else:
+            print("Failed to escape")
+            return False
+
     def player_combat_action(player, list_of_monsters):
         while True:
             print("Chose your action: ")
@@ -63,18 +77,20 @@ def startFight(player, monsters, map):
         player_atk = dice_throw(player.attack)
         target_agil = dice_throw(target.agility)
         if player_atk >= target_agil:
-            if player.class_type == "Thief" and randint(1, 100) <= 25:
+            if player.class_type == "Thief" and random.randint(1, 100) <= 25:
                 print("Double strike hit for 2 endurance")
                 target.endurance -= 2
             else:
                 print("Attack hit")
                 target.endurance -= 1
             if target.endurance <= 0:
-                print("you've killed" + target.name)
+                print("you've killed " + target.name)
                 list_of_monsters.remove(target)
 
         else:
             print("You missed")
+        time.sleep(1)
+
 
     def monster_attack(fighter, target):
         monster_atk = dice_throw(target.attack)
@@ -91,7 +107,7 @@ def startFight(player, monsters, map):
                 if fighter.endurance <= 0:
                     current_map.playerDeath()
         else:
-            print(target.name + " Missed!")
+            print(target.name + " missed!")
 
         time.sleep(1)
 
@@ -99,6 +115,7 @@ def startFight(player, monsters, map):
     list_of_turn = (turn_taking(player, list_of_monsters))
 
     while len(list_of_turn) > 1 and active_player.IsAlive:
+        clear_screen()
         print("Turn_list")
         for i in range(len(list_of_turn)):
             if list_of_turn[i][0].endurance <= 0:
@@ -113,13 +130,16 @@ def startFight(player, monsters, map):
             elif creature[0] == active_player:
                 player_action = player_combat_action(active_player, list_of_monsters)
                 if player_action == "flee":
-                    if current_map.try_flee:
+                    if try_flee():
                         return list_of_monsters
                 if len(list_of_monsters)==0:
                     return list_of_monsters
             elif creature[0].endurance > 0:
                 monster_attack(active_player, creature[0])
     return list_of_monsters
+
+
+
 
 
 #Attack:
