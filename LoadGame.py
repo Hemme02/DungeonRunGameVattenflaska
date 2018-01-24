@@ -1,5 +1,8 @@
 import pickle
 import io
+from AIKnight import AIKnight
+from AIWizard import AIWizard
+from AITheif import AIThief
 
 def load_game_characters():
     try:
@@ -13,6 +16,6 @@ def load_game_characters():
     try:
         current_ai = pickle.load(open("AICharacters.", "rb"))
     except(io.UnsupportedOperation, FileNotFoundError, EOFError):
-        current_ai = []
+        current_ai = [AIWizard(), AIKnight(), AIThief()]
 
     return(current_char, dead_char, current_ai)

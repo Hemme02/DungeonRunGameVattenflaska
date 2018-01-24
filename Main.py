@@ -39,12 +39,6 @@ def welcomeMenu ():
     return
 
 def createAI ():
-    new_AIWizard = AIWizard()
-    new_AITheif = AIThief()
-    new_AIKnight = AIKnight()
-    newGame.add_character_ai(new_AIWizard)
-    newGame.add_character_ai(new_AITheif)
-    newGame.add_character_ai(new_AIKnight)
     welcome()
 
 def finish():
@@ -81,11 +75,14 @@ def aiMenu():
     while True:
         choice = input("Your choice: ")
         if choice == "1":
-            mapMenu("AI", "1")
+            newGame.active_character = newGame.aiCharacters[0]
+            mapMenu(newGame.active_character)
         elif choice == "2":
-            mapMenu("AI", "3")
+            newGame.active_character = newGame.aiCharacters[2]
+            mapMenu(newGame.active_character)
         elif choice == "3":
-            mapMenu("AI", "2")
+            newGame.active_character = newGame.aiCharacters[1]
+            mapMenu(newGame.active_character)
         elif choice == "4":
             print ("Here is the statistic")
             input("Press any key to continue")
@@ -120,19 +117,19 @@ def createCharacter(number):
             new_wizard = Wizard(character_name)
             newGame.add_character(new_wizard)
             newGame.active_character = new_wizard
-            mapMenu(character_name, "1")
+            mapMenu(newGame.active_character)
 
         elif number =="2":
             new_Knight = Knight(character_name)
             newGame.add_character(new_Knight)
             newGame.active_character = new_Knight
-            mapMenu(character_name, "2")
+            mapMenu(newGame.active_character)
 
         elif number == "3":
             new_thief = Thief(character_name)
             newGame.add_character(new_thief)
             newGame.active_character = new_thief
-            mapMenu(character_name, "3")
+            mapMenu(newGame.active_character)
 
 def createMenu ():
     menuToStartGame()
@@ -183,7 +180,7 @@ def select_character():
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
                     print("Character selected:" + newGame.active_character.name)
-                    mapMenu(newGame.active_character.name, newGame.active_character.to_String())
+                    mapMenu(newGame.active_character.name)
 
         except(ValueError):
             print("Wrong choice")
@@ -317,41 +314,44 @@ def startPosition(maxSize):
         elif choice == "4":
             startingPos = maxSize - 1, maxSize - 1
         elif choice == "5":
-            mapMenu(newGame.active_character.name, newGame.active_character.to_String())
+            mapMenu(newGame.active_character)
         else:
             input("Wrong input. Press any key to continue")
 
         return startingPos
 
 # Menu: You are this character,  Which map size do you want to have?
-def mapMenu(name, typeOfCharacter):
+def mapMenu(character):
     clear_screen()
 
     def foorLoop():
-        if typeOfCharacter == "1":
+        if character.to_String() == "1":
             return "Wizard"
-        elif typeOfCharacter == "2":
+        elif character.to_String() == "2":
             return "Knight"
-        elif typeOfCharacter == "3":
+        elif character.to_String() == "3":
             return "Thief"
         else:
             print("Error")
 
     result = foorLoop()
 
-    if name == "AI":
+    if character.AI:
         print("\nYou are playing AI as a "+ result +"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
-        #TODO: här ska AI gå annan  (just nu går den till mapSize och exempelvis go back går tillbaka till welcome, inte ai welcome)
     else:
-        print("\nYou are a "+result+" with name "+name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
+        print("\nYou are a "+result+" with name "+character.name+"\nSelect map size: \n" "1. Small \n""2. Medium  \n""3. Large  \n\n""4. Go back \n")
 
     size = mapSize()
 
 
 
-    newMap = Map(size, startPosition(size),None, newGame.active_character)
-    newMap.print_map()
-    finish_dungeon()
+    newMap = Map(size, startPosition(size), newGame.active_character, newGame)
+    if character.AI:
+        newMap.AI_move()
+        #TODO, här kan man lägga in AI slutet
+    else:
+        newMap.print_map()
+        finish_dungeon()
 
 def mapSize():
     while True:
@@ -388,7 +388,7 @@ def finish_dungeon():
         print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3.  Exit ")
         end_game_choice = input("Your choice :")
         if end_game_choice == "1":
-            mapMenu(newGame.active_character.name, newGame.active_character.to_String())
+            mapMenu(newGame.active_character)
         elif end_game_choice == "2":
             newGame.active_character = None
             welcome()
@@ -402,10 +402,8 @@ def finish_dungeon():
 currentCharacters, deadCharacters, aiCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters, aiCharacters)
 welcomeMenu()
+#TODO behövs de nedre av de här?
 size = mapSize()
-
-
-
 Map(size,startPosition(size),None,newGame.active_character)
 
 
