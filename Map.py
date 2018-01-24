@@ -11,7 +11,7 @@ from classWizard import Wizard
 
 class Map:
 
-    def __init__(self, size_, player_position_, active_character,game_):
+    def __init__(self, size_, player_position_, active_character, game_):
         self.size = size_
         self.player_y, self.player_x = player_position_
         self.actual_map = self.createMap()
@@ -256,28 +256,29 @@ class Map:
         actual_position = self.actual_map[self.player_y][self.player_x]
 
         if len(actual_position.aliveMonsters) != 0:
-
-            self.print_map()
+            self.playerDeath()
+            #self.print_map()
             #TODO start fight
 
         elif len(actual_position.existingItems) != 0:
 
-            self.PickUpItems()
+            #self.PickUpItems()
             self.print_map()
 
         else:
             self.print_map()
 
-
     def PickUpItems(self):
-
-
+        print("pick up")
         actual_position = self.actual_map[self.player_y][self.player_x]
         for items in actual_position.existingItems:
-            print("picked up")
             self.active_character.treasure_carried.append(items)
 
+        print(self.active_character.treasure_carried)
         actual_position.existingItems = []
+
+
+
 
 
     def try_flee(self):
@@ -300,10 +301,22 @@ class Map:
 
     def playerDeath(self):
 
+
         print( "*** You have died ""***\n " + "The treasures you picked up during this run will be lost, all data will be saved.\n\n")
-        self.active_character.treasure_carried = 0
+        self.active_character.treasure_carried = []
         self.game.deadCharacters.append(self.game.currentCharacters)
-        self.game.save_characters()
+        print(self.game.currentCharacters)
+        for i in range (len(self.game.currentCharacters)):
+
+            if self.game.currentCharacters[i] == self.game.active_character:
+                self.game.currentCharacters.pop(i)
+                print(self.game.currentCharacters)
+                print(self.game.deadCharacters)
+                self.game.save_characters()
+
+
+        input("Press any key to continue!")
+
 
 
 
