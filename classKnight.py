@@ -3,7 +3,7 @@ from characterClass import Character
 class Knight(Character):
     treasure_saved = 0
     treasure_carried = []
-    class_type = ""
+    class_type = "Knight"
 
     def __init__(self, name_):
 

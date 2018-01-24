@@ -4,7 +4,7 @@ from characterClass import Character
 class Thief(Character):
     treasure_saved = 0
     treasure_carried = []
-    class_type = ""
+    class_type = "Thief"
 
     def __init__(self, name_):
         initiative_ = 7

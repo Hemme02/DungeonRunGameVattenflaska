@@ -262,6 +262,9 @@ class Map:
                 else:
                     self.print_map()
                     self.move_player()
+            else:
+                self.print_map()
+                self.move_player()
 
         elif len(actual_position.existingItems) != 0:
             self.print_map()
