@@ -69,7 +69,7 @@ class AIThief(Character):
         self.totalEnemies += self.enemiesKilled
         self.enemiesKilled = 0
 
-    def totalStats(self):
+    def totalTStats(self):
         print("Total statistics for AI-Thief: \n")
         print("Total runs: ["+str(self.totalRuns)+"]\n")
         print("Runs completed: [" + str(self.totalFinished) + "]\n")
@@ -79,7 +79,7 @@ class AIThief(Character):
         print("Average found treasures: [" + str(round(self.treasure_saved / self.totalRuns)) + "]\n")
         input("Press any key to return to the previous screen.")
 
-    def printAImultiStat(self):
+    def printAITmultiStat(self):
         print("You are done with" + str(self.multiRuns) + " run(s) with the AI-Thief class.\nThe statistics are:\n")
         print("It completed the dungeon " + str(self.multiFinished) + " times.\n")
         if self.multiDead > 0:

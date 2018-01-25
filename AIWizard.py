@@ -58,7 +58,7 @@ class AIWizard(Character):
 
 
 
-    def thiefStatisticsTotal(self):
+    def wizardStatisticsTotal(self):
         self.totalRuns += self.run
         self.run = 0
         self.totalFinished += self.runFinished
@@ -70,7 +70,7 @@ class AIWizard(Character):
         self.totalEnemies += self.enemiesKilled
         self.enemiesKilled = 0
 
-    def totalStats(self):
+    def totalWStats(self):
         print("Total statistics for AI-Wizard: \n")
         print("Total runs: ["+str(self.totalRuns)+"]\n")
         print("Runs completed: [" + str(self.totalFinished) + "]\n")
@@ -81,7 +81,7 @@ class AIWizard(Character):
         input("Press any key to return to the previous screen.")
 
 
-    def printAImultiStat(self):
+    def printAIWmultiStat(self):
         print("You are done with" + str(self.multiRuns) + " run(s) with the AI-Wizard class.\nThe statistics are:\n")
         print("It completed the dungeon " + str(self.multiFinished) + " times.\n")
         if self.multiDead > 0:
