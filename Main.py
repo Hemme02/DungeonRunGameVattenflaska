@@ -30,7 +30,7 @@ def welcomeMenu ():
     print("_____________________________________________________________________________________________")
     print('This game is a hardcore roguelike dungeon crawler, your character will be deleted upon death.')
     time.sleep(0.5)
-    print('**** Developers: Jens, Belkiz, Johanna, Usko, Sanju and Simon. *****')
+    print('**** Developers: Jens, Belkiz, Johanna, Usko, Sanju, Simon and Nabil. *****')
     print('______________________________________________________________________________________________')
     time.sleep(0.5)
     input("Press any key to start the game")
