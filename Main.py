@@ -93,13 +93,13 @@ def aiMenu():
                 aiMenu()
             elif klass == "2":
                 xx = AIWizard()
-                xx.totalTStats()
+                xx.totalWStats()
                 input("Press any key to continue")
                 aiMenu()
 
             elif klass == "3":
                 xx = AIKnight()
-                xx.totalTStats()
+                xx.totalKStats()
                 input("Press any key to continue")
                 aiMenu()
 
@@ -362,15 +362,48 @@ def mapMenu(character):
 
     size = mapSize()
 
+    times_to_run = 1
+    if character.AI:
+        ai_start = startPosition(size)
+        while True:
+            print("\nDo you want to play multiple runs?\n1. Yes \n2. No  \n3. Go back\n")
+            multi_run_choice = input("Your choice")
+            if multi_run_choice == "1":
+                print("How many times do you want to run?")
+                try:
+                    number_of_times = int(input("Your choice:  "))
+                    print("You have chosen to run "+ str(number_of_times)+ " times.\nThe game will run and when its done you will recieve the stats of the runs.")
+                    input("Press any key to continue")
+                    times_to_run = number_of_times
+                    character.doing_multiple_runs = True
+                    break
+                except ValueError:
+                    print("Wrong choice")
+                    input("Press any key to continue")
+                    continue
+            elif multi_run_choice == "2":
+                break
+            elif multi_run_choice == "3":
+                aiMenu()
+            else:
+                print("Wrong input")
+                input("Press any key to continue")
+                continue
 
-
-    newMap = Map(size, startPosition(size), newGame.active_character, newGame)
+    newMap = Map(size, ai_start, newGame.active_character, newGame)
     if character.AI:
         newMap.print_map()
-        print("Print funkar")
         newMap.AI_move()
+        times_to_run -= 1
+        while times_to_run > 0:
+            newMap = Map(size, ai_start, newGame.active_character, newGame)
+            newMap.print_map()
+            newMap.AI_move()
+            times_to_run -= 1
+        character.doing_multiple_runs = False
         finish_dungeon()
         #TODO, här kan man lägga in AI slutet
+
     else:
         newMap.print_map()
         newMap.move_player()

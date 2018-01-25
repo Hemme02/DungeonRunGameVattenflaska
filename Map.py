@@ -132,8 +132,9 @@ class Map:
 
         print("\n" + "-" * (self.size * 5))
         print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
-        if len(self.actual_map[self.player_y][self.player_x].aliveMonsters) != 0:
-            input("Print a key to continue to the fight")
+        if not self.active_character.AI:
+            if len(self.actual_map[self.player_y][self.player_x].aliveMonsters) != 0:
+                input("Print a key to continue to the fight")
 
 
     def player_can_exit(self):
@@ -316,6 +317,9 @@ class Map:
     def ai_Death(self):
         pass
 
+    def AI_finish(self):
+        pass
+
     def AI_move(self):
         self.print_map()
         rooms = []
@@ -372,11 +376,11 @@ class Map:
             elif current_room.aliveMonsters == 0 and current_room.existingItems != 0:
                 self.AI_move()
             else:
-                current_room.aliveMonsters = startFight(self.active_character, current_room.aliveMonsters, self)
+                self.actual_map[self.player_y][self.player_x].aliveMonsters = startFight(self.active_character, current_room.aliveMonsters, self)
                 if not self.active_character.IsAlive:
                     self.ai_Death()
                 else:
-                    if len(current_room.aliveMonsters) == 0:
+                    if len(self.actual_map[self.player_y][self.player_x].aliveMonsters) == 0:
                         print("You won the fight. You have " + str(
                             self.active_character.endurance) + " endurance left.")
                         if len(current_room.existingItems) != 0:
@@ -384,11 +388,12 @@ class Map:
                             self.AI_move()
                         else:
                             self.AI_move()
-                    elif len(current_room.aliveMonsters) > 0:
+                    elif len(self.actual_map[self.player_y][self.player_x].aliveMonsters) > 0:
+                        print("You flee backwards to the previous room. None follow you.")
                         self.fleed_room = current_room
-                        self.move_on_map(self.old_room)
                         self.times_fleed += 1
-                        self.AI_move()
+                        self.move_on_map(self.old_room)
+
                     else:
                         self.AI_move()
 
