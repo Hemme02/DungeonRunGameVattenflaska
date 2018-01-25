@@ -10,6 +10,7 @@ class AIKnight(Character):
         attack_ = 6
         agility_ = 4
         self.AI = True
+        self.IsAlive = True
         self.doing_multiple_runs = False
         self.class_name = "Knight"
         self.run = 0

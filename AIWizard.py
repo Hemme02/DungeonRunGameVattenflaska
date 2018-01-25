@@ -10,6 +10,7 @@ class AIWizard(Character):
         attack_ = 9
         agility_ = 5
         self.AI = True
+        self.IsAlive = True
         self.doing_multiple_runs = False
         self.class_name = "Wizard"
         self.run = 0

@@ -19,6 +19,8 @@ class Map:
         self.old_room = ""
         self.active_character = active_character
         self.game = game_
+        self.times_fleed = 0
+        self.fleed_room = None
 
 
 
@@ -69,13 +71,13 @@ class Map:
 
         elif len(enteredRoom.existingItems) == 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You enter a room and when you look around you see \n" + enteredRoom.printMobs()
-            input("Press any key to continue")
+
 
 
         elif len(enteredRoom.existingItems) != 0 and len(enteredRoom.aliveMonsters) != 0:
             string_to_return = "You see something shiny but your attention is quickly drawn elsewhere, " \
                                "in front of the treasures you see \n" + enteredRoom.printMobs()
-            input("Press any key to continue")
+
 
         self.PickUpItems()
         return string_to_return
@@ -130,6 +132,8 @@ class Map:
 
         print("\n" + "-" * (self.size * 5))
         print(self.string_for_room_event(self.actual_map[self.player_y][self.player_x]))
+        if len(self.actual_map[self.player_y][self.player_x].aliveMonsters) != 0:
+            input("Print a key to continue to the fight")
 
 
     def player_can_exit(self):
@@ -309,6 +313,9 @@ class Map:
         input("Press any key to continue!")
         return
 
+    def ai_Death(self):
+        pass
+
     def AI_move(self):
         self.print_map()
         rooms = []
@@ -353,7 +360,8 @@ class Map:
                 self.move_on_map("left")
 
     def AI_event(self):
-        time.sleep(1)
+        if not self.active_character.doing_multiple_runs:
+            time.sleep(1)
         current_room = self.actual_map[self.player_y][self.player_x]
         if current_room.exit:
             print("You found the exit")
@@ -364,28 +372,25 @@ class Map:
             elif current_room.aliveMonsters == 0 and current_room.existingItems != 0:
                 self.AI_move()
             else:
-                self.AI_move()
-                """
-                if self.active_character.endurance < 2:
-                    # TODO Flee
-                    self.AI_move()
-                elif self.active_character.endurance < 3:
-                    if len(current_room.aliveMonsters) > 1:
-                        # TODO Flee
-                        self.AI_move()
-                    elif len(current_room.aliveMonsters) == 1 and current_room.aliveMonsters[0].endurance_ > 2:
-
-                        # TODO Flee
+                current_room.aliveMonsters = startFight(self.active_character, current_room.aliveMonsters, self)
+                if not self.active_character.IsAlive:
+                    self.ai_Death()
+                else:
+                    if len(current_room.aliveMonsters) == 0:
+                        print("You won the fight. You have " + str(
+                            self.active_character.endurance) + " endurance left.")
+                        if len(current_room.existingItems) != 0:
+                            print("You find" + current_room.printTreasure())
+                            self.AI_move()
+                        else:
+                            self.AI_move()
+                    elif len(current_room.aliveMonsters) > 0:
+                        self.fleed_room = current_room
+                        self.move_on_map(self.old_room)
+                        self.times_fleed += 1
                         self.AI_move()
                     else:
                         self.AI_move()
-                        # TODO Fight
-                        if current_room.existingItems != 0:
-                            # TODO Plocka upp skatter
-                            self.AI_move()
-
-
-                        # TODO slåss mot monster"""
 
 
 
