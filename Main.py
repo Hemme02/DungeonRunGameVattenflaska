@@ -71,7 +71,7 @@ def welcome():
 
 def aiMenu():
     clear_screen()
-    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Play as a Wizard\n""2. Play as a Thief \n""3. Play as a Knight \n""4. See statistic\n""5. Go back\n")
+    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Simulate as a Wizard\n""2. Simulate as a Thief \n""3. Simulate as a Knight \n""4. See statistic\n""5. Go back\n")
     while True:
         choice = input("Your choice: ")
         if choice == "1":
@@ -84,10 +84,29 @@ def aiMenu():
             newGame.active_character = newGame.aiCharacters[1]
             mapMenu(newGame.active_character)
         elif choice == "4":
-            print ("Here is the statistic")
-            input("Press any key to continue")
-            aiMenu()
-            #TODO gör statistik + en tillbakaknapp
+            klass = input("Pick a class\n\n")
+            print("1. Thief\n2. Wizard\n3.Knight\n\n4. Go Back")
+            if klass == "1":
+                xx = AIThief()
+                xx.totalTStats()
+                input("Press any key to continue")
+                aiMenu()
+            elif klass == "2":
+                xx = AIWizard()
+                xx.totalTStats()
+                input("Press any key to continue")
+                aiMenu()
+
+            elif klass == "3":
+                xx = AIKnight()
+                xx.totalTStats()
+                input("Press any key to continue")
+                aiMenu()
+
+            elif klass == "4":
+                aiMenu()
+            else:
+                print("Wrong input!")
         elif choice == "5":
             welcome()
         else:
