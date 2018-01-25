@@ -1,5 +1,7 @@
 import random
+import sys
 from GiantSpider import GiantSpider
+sys.setrecursionlimit(1500)
 
 
 def dice_throw(number_of_dices):
