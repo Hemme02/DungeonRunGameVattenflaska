@@ -30,7 +30,7 @@ class AIThief(Character):
         self.totalDead = 0
         self.totalRooms = 0
         self.totalEnemies = 0
-        Character.__init__(self, "AIThief", initiative_, endurance_, attack_, agility_)
+        Character.__init__(self, "AI-Thief", initiative_, endurance_, attack_, agility_)
 
     def earn_treasure(self):
         for item in self.treasure_carried:
@@ -48,10 +48,13 @@ class AIThief(Character):
         self.multiEnemies += self.enemiesKilled
         self.multiTreasures += self.treasure_carried
 
-
-    def multiMath(self):
-        print ("HEj")
-
+    def resetMulti(self):
+        self.multiRuns = 0
+        self.multiFinished = 0
+        self.multiDead = 0
+        self.multiRooms = 0
+        self.multiEnemies = 0
+        self.multiTreasures = 0
 
     def thiefStatisticsTotal(self):
         self.totalRuns += self.run
@@ -64,4 +67,29 @@ class AIThief(Character):
         self.roomAmounts = 0
         self.totalEnemies += self.enemiesKilled
         self.enemiesKilled = 0
+
+    def totalStats(self):
+        print("Total statistics for AI-Knight: \n")
+        print("Total runs: ["+str(self.totalRuns)+"]\n")
+        print("Runs completed: [" + str(self.totalFinished) + "]\n")
+        print("Total deaths: [" + str(self.totalDead) + "]\n")
+        print("Average cleared rooms: [" + str(round(self.totalRooms / self.totalRuns)) + "]\n")
+        print("Average killed monsters: [" + str(round(self.totalEnemies / self.totalRuns)) + "]\n")
+        print("Average found treasures: [" + str(round(self.treasure_saved / self.totalRuns)) + "]\n")
+        input("Press any key to return to the previous screen.")
+
+    def printAImultiStat(self):
+        print("You are done with" + str(self.multiRuns) + " run(s) with the AI-Thief class.\nThe statistics are:\n")
+        print("It completed the dungeon " + str(self.multiFinished) + " times.\n")
+        if self.multiDead > 0:
+            print("The AI died " + str(self.multiDead) + " time(s) during the runs.\n")
+        print("The average amount of visited rooms are: " + str(round(self.multiRooms / self.multiRuns)) + "\n")
+        print("The average amount of killed monsters during the runs are " + str(round(self.multiEnemies / self.multiRuns)) + "\n")
+        print("The average amount of treasures gathered during the runs: " + str(round(self.multiTreasures / self.multiRuns)) + "\n\n")
+        input("All data will be saved in the database, press any key to return to the startscreen!")
+        self.resetMulti()
+
+
+
+
 
