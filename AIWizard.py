@@ -57,6 +57,7 @@ class AIWizard(Character):
         self.multiTreasures = 0
 
 
+
     def thiefStatisticsTotal(self):
         self.totalRuns += self.run
         self.run = 0

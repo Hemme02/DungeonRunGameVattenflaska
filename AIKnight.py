@@ -56,6 +56,7 @@ class AIKnight(Character):
         self.multiEnemies = 0
         self.multiTreasures = 0
 
+
     def thiefStatisticsTotal(self):
         self.totalRuns += self.run
         self.run = 0
