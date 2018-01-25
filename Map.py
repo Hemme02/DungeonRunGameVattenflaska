@@ -308,7 +308,6 @@ class Map:
 
     def playerDeath(self):
         clear_screen()
-
         print( "*** You have died ""***\n " + "The treasures you picked up during this run will be lost, all data will be saved.\n\n")
         self.active_character.treasure_carried = []
         self.active_character.IsAlive = False
@@ -319,16 +318,10 @@ class Map:
                 self.game.currentCharacters.pop(i)
                 self.game.save_characters()
 
-
-        input("Press any key to continue!")
+        if not self.active_character.AI:
+            input("Press any key to continue!")
         return
 
-    def ai_Death(self):
-        self.active_character.aiDead += 1
-        return
-
-    def AI_finish(self):
-        pass
 
     def AI_move(self):
         self.print_map()
@@ -389,7 +382,10 @@ class Map:
             else:
                 self.actual_map[self.player_y][self.player_x].aliveMonsters = startFight(self.active_character, current_room.aliveMonsters, self)
                 if not self.active_character.IsAlive:
-                    self.ai_Death()
+                    self.active_character.aiDead += 1
+                    self.active_character.IsAlive = True
+                    self.active_character.endurance = self.active_character.max_endurance
+                    return
                 else:
                     if len(self.actual_map[self.player_y][self.player_x].aliveMonsters) == 0:
                         print("You won the fight. You have " + str(
