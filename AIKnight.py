@@ -3,6 +3,7 @@ from characterClass import Character
 class AIKnight(Character):
     treasure_saved = 0
     treasure_carried = []
+    class_type = "Knight"
 
     def __init__(self):
         initiative_ = 5

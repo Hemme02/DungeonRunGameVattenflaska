@@ -3,6 +3,7 @@ from characterClass import Character
 class AIWizard(Character):
     treasure_saved = 0
     treasure_carried = []
+    class_type = "Wizard"
 
     def __init__(self):
         initiative_ = 6
