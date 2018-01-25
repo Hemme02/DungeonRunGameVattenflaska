@@ -12,6 +12,7 @@ class Knight(Character):
         attack_ = 6
         agility_ = 4
         self.AI = False
+        self.doing_multiple_runs = False
         self.IsAlive = True
         self.class_name = "Knight"
         Character.__init__(self,name_, initiative_, endurance_, attack_, agility_)

@@ -13,6 +13,7 @@ class Wizard(Character):
         attack_ = 9
         agility_ = 5
         self.AI = False
+        self.doing_multiple_runs = False
         self.IsAlive = True
         self.class_name = "Wizard"
         Character.__init__(self, name_, initiative_, endurance_, attack_, agility_)

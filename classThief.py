@@ -12,6 +12,7 @@ class Thief(Character):
         attack_ = 5
         agility_ = 7
         self.AI = False
+        self.doing_multiple_runs = False
         self.IsAlive = True
         self.class_name = "Thief"
         Character.__init__(self, name_, initiative_, endurance_, attack_, agility_)
