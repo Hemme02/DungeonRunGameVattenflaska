@@ -10,6 +10,7 @@ class AIThief(Character):
         attack_ = 5
         agility_ = 7
         self.AI = True
+        self.doing_multiple_runs = False
         self.class_name = "Thief"
         self.run = 0
         self.runFinished = 0
