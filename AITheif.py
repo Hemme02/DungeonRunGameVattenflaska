@@ -30,6 +30,7 @@ class AIThief(Character):
         self.totalDead = 0
         self.totalRooms = 0
         self.totalEnemies = 0
+        self.totalGold = 0
         Character.__init__(self, "AI-Thief", initiative_, endurance_, attack_, agility_)
 
     def earn_treasure(self):
@@ -46,7 +47,20 @@ class AIThief(Character):
         self.multiDead += self.aiDead
         self.multiRooms += self.roomAmounts
         self.multiEnemies += self.enemiesKilled
-        self.multiTreasures += self.treasure_carried
+        gold = 0
+        for items in self.treasure_carried:
+            gold += items.gold
+        self.multiTreasures += gold
+        self.thiefStatisticsTotal()
+        self.clear_run()
+
+    def clear_run(self):
+        self.run = 0
+        self.runFinished = 0
+        self.aiDead = 0
+        self.roomAmounts = 0
+        self.enemiesKilled = 0
+        self.treasure_carried = []
 
     def resetMulti(self):
         self.multiRuns = 0
@@ -59,15 +73,27 @@ class AIThief(Character):
 
     def thiefStatisticsTotal(self):
         self.totalRuns += self.run
-        self.run = 0
         self.totalFinished += self.runFinished
-        self.runFinished = 0
         self.totalDead += self.aiDead
-        self.aiDead = 0
         self.totalRooms += self.roomAmounts
-        self.roomAmounts = 0
         self.totalEnemies += self.enemiesKilled
-        self.enemiesKilled = 0
+
+
+    def print_single_run(self):
+        print("Run statistics for AI-Thief: \n")
+        print("Finished run: " +str(self.IsAlive))
+        print("Cleared rooms: [" + str(self.roomAmounts) + "]\n")
+        print("Killed monsters: [" + str(self.enemiesKilled) + "]\n")
+        print("Fund treasures: [" + str(self.treasure_saved) + "]\n")
+        input("Press any key to return to the previous screen.")
+        self.thiefStatisticsTotal()
+        self.clear_run()
+
+    def print_stats(self):
+        if self.doing_multiple_runs:
+            self.printAITmultiStat()
+        else:
+            self.print_single_run()
 
     def totalTStats(self):
         print("Total statistics for AI-Thief: \n")
