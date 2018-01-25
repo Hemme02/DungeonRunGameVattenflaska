@@ -8,6 +8,7 @@ class GiantSpider(Character):
         agility_ = 3
         rarity_ = 20
         alive_ = True
+
         Character.__init__(self,"Giant Spider", initiative_, endurance_, attack_, agility_)
 
     def toString(self):

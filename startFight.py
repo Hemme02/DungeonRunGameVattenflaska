@@ -108,9 +108,35 @@ def startFight(player, monsters, map):
             else:
                 print("Attack hit")
                 target.endurance -= 1
+
             if target.endurance <= 0:
                 print("you've killed " + target.name)
                 list_of_monsters.remove(target)
+
+
+
+
+                if target.name == "Giant Spider":
+                    player.dead_giantSpider += 1
+                    print(player.dead_giantSpider)
+
+                elif target.name == "Orc":
+                    player.dead_orc = player.dead_orc + 1
+                    print(player.dead_orc)
+
+                elif target.name == "Skeleton":
+                    player.dead_skeleton = player.dead_skeleton + 1
+                    print(player.dead_skeleton)
+
+                elif target.name == "Troll":
+                    player.dead_troll = player.dead_troll + 1
+                    print(player.dead_troll)
+
+                else:
+                    print("Error")
+
+
+
 
         else:
             print("You missed")
@@ -176,6 +202,5 @@ def startFight(player, monsters, map):
 #Om monster dör, tar bort från rumslista och turordningslista.
 #Riddare blockar alltid första attacken vid träff mot den i varje strid.
 #Tjuv gör dubbel skada 25% av tiden
-
 
 

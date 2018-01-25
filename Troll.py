@@ -8,6 +8,7 @@ class Troll(Character):
         agility_ = 2
         rarity_ = 5
         alive_ = True
+
         Character.__init__(self, "Troll", initiative_, endurance_, attack_, agility_)
 
     def toString(self):
