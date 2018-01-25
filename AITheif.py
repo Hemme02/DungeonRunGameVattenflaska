@@ -77,6 +77,7 @@ class AIThief(Character):
         self.totalDead += self.aiDead
         self.totalRooms += self.roomAmounts
         self.totalEnemies += self.enemiesKilled
+        self.treasure_saved += self.multiTreasures
 
 
     def print_single_run(self):
