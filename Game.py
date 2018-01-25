@@ -7,7 +7,7 @@ class Game:
     currentCharacters = []
     deadCharacters = []
     aiCharacters = []
-
+    listOfStatistics = []
     def __init__(self, currentCharacters, deadCharacters, aiCharacter):
         self.currentCharacters = currentCharacters
         self.deadCharacters = deadCharacters
@@ -25,4 +25,9 @@ class Game:
     def add_character_ai(self, newAI):
         self.aiCharacters.append(newAI)
         save_ai(self.aiCharacters)
+
+    def mirrorIndex(self):
+        for i in range (len(self.currentCharacters)):
+            if self.active_character == self.currentCharacters[i]:
+                self.listOfStatistics.append[i, ]
 

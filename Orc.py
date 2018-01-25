@@ -8,6 +8,7 @@ class Orc(Character):
         agility_ = 4
         rarity_ = 10
         alive_ = True
+
         Character.__init__(self, "Orc", initiative_, endurance_, attack_, agility_)
 
     def toString(self):

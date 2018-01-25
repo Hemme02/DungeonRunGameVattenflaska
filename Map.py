@@ -293,6 +293,7 @@ class Map:
         actual_position = self.actual_map[self.player_y][self.player_x]
         for items in actual_position.existingItems:
             self.active_character.treasure_carried.append(items)
+            print(" You picked up treasure")
         actual_position.existingItems = []
 
 

@@ -8,6 +8,7 @@ class Skeleton(Character):
         agility_ = 3
         rarity_ = 15
         alive_ = True
+
         Character.__init__(self, "Skeleton", initiative_, endurance_, attack_, agility_)
 
     def toString(self):

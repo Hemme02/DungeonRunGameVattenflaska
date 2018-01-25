@@ -183,6 +183,7 @@ def select_character():
     clear_screen()
     if len(newGame.currentCharacters) != 0:
         print("Select character:")
+
         num = 1
         for character in newGame.currentCharacters:
             print(str(num)+":  "+character.name)
@@ -198,7 +199,8 @@ def select_character():
                     welcome()
                 else:
                     newGame.active_character = newGame.currentCharacters[character_choice-1]
-                    print("Character selected:" + newGame.active_character.name)
+                    print("Character selected:" + newGame.active_character.name )
+                    print(newGame.active_character.toStringStatistics())
                     mapMenu(newGame.active_character)
 
         except(ValueError):
@@ -439,6 +441,7 @@ def finish_dungeon():
         welcome()
     else:
         clear_screen()
+        newGame.active_character.totalOfFinishedRun()
         treasure_found = 0
         for items in newGame.active_character.treasure_carried:
             treasure_found += items.gold
