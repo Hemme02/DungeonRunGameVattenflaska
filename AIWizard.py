@@ -71,7 +71,7 @@ class AIWizard(Character):
         self.enemiesKilled = 0
 
     def totalStats(self):
-        print("Total statistics for AI-Wnight: \n")
+        print("Total statistics for AI-Wizard: \n")
         print("Total runs: ["+str(self.totalRuns)+"]\n")
         print("Runs completed: [" + str(self.totalFinished) + "]\n")
         print("Total deaths: [" + str(self.totalDead) + "]\n")

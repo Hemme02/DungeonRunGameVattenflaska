@@ -70,7 +70,7 @@ class AIThief(Character):
         self.enemiesKilled = 0
 
     def totalStats(self):
-        print("Total statistics for AI-Knight: \n")
+        print("Total statistics for AI-Thief: \n")
         print("Total runs: ["+str(self.totalRuns)+"]\n")
         print("Runs completed: [" + str(self.totalFinished) + "]\n")
         print("Total deaths: [" + str(self.totalDead) + "]\n")
