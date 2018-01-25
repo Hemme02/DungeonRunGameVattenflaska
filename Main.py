@@ -391,6 +391,8 @@ def finish_dungeon():
         for items in newGame.active_character.treasure_carried:
             treasure_found += items.gold
         print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
+        damage_taken = newGame.active_character.max_endurance - newGame.active_character.endurance
+        print("You have taken " + str(damage_taken) + " in damage")
         newGame.active_character.earn_treasure()
         newGame.active_character.endurance = newGame.active_character.max_endurance
         newGame.save_characters()
