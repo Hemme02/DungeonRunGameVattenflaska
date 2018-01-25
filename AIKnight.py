@@ -101,7 +101,6 @@ class AIKnight(Character):
     def totalKStats(self):
         if self.totalRuns == 0:
             print("No runs recorded")
-            input("Press any key to return to the previous screen.")
         else:
             print("Total statistics for AI-Knight: \n")
             print("Total runs: ["+str(self.totalRuns)+"]\n")
@@ -110,7 +109,7 @@ class AIKnight(Character):
             print("Average cleared rooms: [" + str(round(self.totalRooms / self.totalRuns)) + "]\n")
             print("Average killed monsters: [" + str(round(self.totalEnemies / self.totalRuns)) + "]\n")
             print("Average found treasures: [" + str(round(self.treasure_saved / self.totalRuns)) + "]\n")
-            input("Press any key to return to the previous screen.")
+
 
     def printAIKmultiStat(self):
         print("You are done with " + str(self.multiRuns) + " run(s) with the AI-Knight class.\nThe statistics are:\n")
@@ -120,6 +119,6 @@ class AIKnight(Character):
         print("The average amount of visited rooms are: " + str(round(self.multiRooms / self.multiRuns)) + "\n")
         print("The average amount of killed monsters during the runs are: " + str(round(self.multiEnemies / self.multiRuns)) + "\n")
         print("The average amount of treasures gathered during the runs: " + str(round(self.multiTreasures / self.multiRuns)) + "\n\n")
-        input("All data will be saved in the database, press any key to return to the startscreen!")
+
         self.resetMulti()
 

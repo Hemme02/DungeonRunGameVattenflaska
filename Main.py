@@ -65,13 +65,13 @@ def welcome():
             if result == False:
                 welcome()
         else:
-            print ("\nWrong number. Choose one between 1-3")
+            print("\nWrong number. Choose one between 1-4")
             input("Press any key to continue")
             welcome()
 
 def aiMenu():
     clear_screen()
-    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Simulate as a Wizard\n""2. Simulate as a Thief \n""3. Simulate as a Knight \n""4. See statistic\n""5. Go back\n")
+    print ("\nAI Menu\nPlease choose one of the following:\n" "1. Simulate as a Wizard\n""2. Simulate as a Thief \n""3. Simulate as a Knight \n""4. See statistics\n""5. Go back\n")
     while True:
         choice = input("Your choice: ")
         if choice == "1":
@@ -95,13 +95,11 @@ def aiMenu():
                 xx.totalWStats()
                 input("Press any key to continue")
                 aiMenu()
-
             elif klass == "3":
                 xx = newGame.aiCharacters[1]
                 xx.totalKStats()
                 input("Press any key to continue")
                 aiMenu()
-
             elif klass == "4":
                 aiMenu()
             else:
@@ -109,7 +107,7 @@ def aiMenu():
         elif choice == "5":
             welcome()
         else:
-            print("\nWrong number. Choose one between 1-3")
+            print("\nWrong number. Choose one between 1-5")
             input("Press any key to continue")
             aiMenu()
 
@@ -467,7 +465,7 @@ def finish_dungeon():
         input("\n\nPress key to continue")
         while True:
             clear_screen()
-            print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Change character\n3.  Exit ")
+            print("\n\nWhat do you want to do now?\n1.  Try another dungeon\n2.  Go back to main menu\n3.  Exit ")
             end_game_choice = input("Your choice :")
             if end_game_choice == "1":
                 mapMenu(newGame.active_character)
