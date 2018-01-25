@@ -91,24 +91,32 @@ class Map:
             self.old_room = "down"
             self.player_y = self.player_y - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            if self.active_character.AI:
+                self.active_character.roomAmounts += 1
             valid_move = True
 
         elif move.lower() == "down" and self.player_y != max_size:
             self.old_room = "up"
             self.player_y = self.player_y + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            if self.active_character.AI:
+                self.active_character.roomAmounts += 1
             valid_move = True
 
         elif move.lower() == "left" and self.player_x != 0:
             self.old_room = "right"
             self.player_x = self.player_x - 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            if self.active_character.AI:
+                self.active_character.roomAmounts += 1
             valid_move = True
 
         elif move.lower() == "right" and self.player_x != max_size:
             self.old_room = "left"
             self.player_x = self.player_x + 1
             self.actual_map[self.player_y][self.player_x].visitedRoom()
+            if self.active_character.AI:
+                self.active_character.roomAmounts += 1
             valid_move = True
 
         if self.active_character.AI:
@@ -316,7 +324,8 @@ class Map:
         return
 
     def ai_Death(self):
-        pass
+        self.active_character.aiDead += 1
+        return
 
     def AI_finish(self):
         pass
@@ -370,6 +379,7 @@ class Map:
         current_room = self.actual_map[self.player_y][self.player_x]
         if current_room.exit:
             print("You found the exit")
+            self.active_character.runFinished += 1
             return
         else:
             if current_room.aliveMonsters == 0 and current_room.existingItems == 0:

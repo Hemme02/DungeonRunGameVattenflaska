@@ -84,21 +84,20 @@ def aiMenu():
             newGame.active_character = newGame.aiCharacters[1]
             mapMenu(newGame.active_character)
         elif choice == "4":
-            klass = input("Pick a class\n\n")
-            print("1. Thief\n2. Wizard\n3.Knight\n\n4. Go Back")
+            klass = input("Pick a class\n\n1. Thief\n2. Wizard\n3. Knight\n\n4. Go Back")
             if klass == "1":
-                xx = AIThief()
+                xx = newGame.aiCharacters[2]
                 xx.totalTStats()
                 input("Press any key to continue")
                 aiMenu()
             elif klass == "2":
-                xx = AIWizard()
+                xx = newGame.aiCharacters[0]
                 xx.totalWStats()
                 input("Press any key to continue")
                 aiMenu()
 
             elif klass == "3":
-                xx = AIKnight()
+                xx = newGame.aiCharacters[1]
                 xx.totalKStats()
                 input("Press any key to continue")
                 aiMenu()
@@ -392,21 +391,27 @@ def mapMenu(character):
                 input("Press any key to continue")
                 continue
 
-    newMap = Map(size, ai_start, newGame.active_character, newGame)
+        newMap = Map(size, ai_start, newGame.active_character, newGame)
     if character.AI:
+
         newMap.print_map()
         newMap.AI_move()
         times_to_run -= 1
-        while times_to_run > 0:
-            newMap = Map(size, ai_start, newGame.active_character, newGame)
-            newMap.print_map()
-            newMap.AI_move()
-            times_to_run -= 1
-        character.doing_multiple_runs = False
+        character.run += 1
+        if times_to_run != 1:
+            character.multipleRuns()
+            while times_to_run > 0:
+                newMap = Map(size, ai_start, newGame.active_character, newGame)
+                newMap.print_map()
+                newMap.AI_move()
+                times_to_run -= 1
+                character.run += 1
+                character.multipleRuns()
+
         finish_dungeon()
-        #TODO, här kan man lägga in AI slutet
 
     else:
+        newMap = Map(size, startPosition(size), newGame.active_character, newGame)
         newMap.print_map()
         newMap.move_player()
         finish_dungeon()
@@ -441,16 +446,22 @@ def finish_dungeon():
         welcome()
     else:
         clear_screen()
-        newGame.active_character.totalOfFinishedRun()
-        treasure_found = 0
-        for items in newGame.active_character.treasure_carried:
-            treasure_found += items.gold
-        print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
-        damage_taken = newGame.active_character.max_endurance - newGame.active_character.endurance
-        print("You have taken " + str(damage_taken) + " in damage")
-        newGame.active_character.earn_treasure()
-        newGame.active_character.endurance = newGame.active_character.max_endurance
-        newGame.save_characters()
+        if newGame.active_character.AI:
+            newGame.active_character.print_stats()
+            newGame.active_character.doing_multiple_runs = False
+            newGame.active_character.endurance = newGame.active_character.max_endurance
+            newGame.save_characters()
+        else:
+            newGame.active_character.totalOfFinishedRun()
+            treasure_found = 0
+            for items in newGame.active_character.treasure_carried:
+                treasure_found += items.gold
+            print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
+            damage_taken = newGame.active_character.max_endurance - newGame.active_character.endurance
+            print("You have taken " + str(damage_taken) + " in damage")
+            newGame.active_character.earn_treasure()
+            newGame.active_character.endurance = newGame.active_character.max_endurance
+            newGame.save_characters()
 
         print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
         input("\n\nPress key to continue")

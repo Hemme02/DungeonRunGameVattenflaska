@@ -112,30 +112,20 @@ def startFight(player, monsters, map):
             if target.endurance <= 0:
                 print("you've killed " + target.name)
                 list_of_monsters.remove(target)
-
-
-
-
-                if target.name == "Giant Spider":
-                    player.dead_giantSpider += 1
-                    print(player.dead_giantSpider)
-
-                elif target.name == "Orc":
-                    player.dead_orc = player.dead_orc + 1
-                    print(player.dead_orc)
-
-                elif target.name == "Skeleton":
-                    player.dead_skeleton = player.dead_skeleton + 1
-                    print(player.dead_skeleton)
-
-                elif target.name == "Troll":
-                    player.dead_troll = player.dead_troll + 1
-                    print(player.dead_troll)
-
+                if player.AI:
+                    player.enemiesKilled += 1
                 else:
-                    print("Error")
+                    if target.name == "Giant Spider":
+                        player.dead_giantSpider += 1
 
+                    elif target.name == "Orc":
+                        player.dead_orc = player.dead_orc + 1
 
+                    elif target.name == "Skeleton":
+                        player.dead_skeleton = player.dead_skeleton + 1
+
+                    elif target.name == "Troll":
+                        player.dead_troll = player.dead_troll + 1
 
 
         else:

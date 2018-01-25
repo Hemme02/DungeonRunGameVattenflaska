@@ -81,11 +81,18 @@ class AIThief(Character):
 
     def print_single_run(self):
         print("Run statistics for AI-Thief: \n")
-        print("Finished run: " +str(self.IsAlive))
+        finshed = True
+        if self.aiDead == 1:
+            finshed = False
+        print("Finished run: " + str(finshed))
         print("Cleared rooms: [" + str(self.roomAmounts) + "]\n")
         print("Killed monsters: [" + str(self.enemiesKilled) + "]\n")
-        print("Fund treasures: [" + str(self.treasure_saved) + "]\n")
+        gold = 0
+        for items in self.treasure_carried:
+            gold += items.gold
+        print("Fund treasures: [" + str(gold) + "]\n")
         input("Press any key to return to the previous screen.")
+        self.earn_treasure()
         self.thiefStatisticsTotal()
         self.clear_run()
 
@@ -97,13 +104,17 @@ class AIThief(Character):
 
     def totalTStats(self):
         print("Total statistics for AI-Thief: \n")
-        print("Total runs: ["+str(self.totalRuns)+"]\n")
-        print("Runs completed: [" + str(self.totalFinished) + "]\n")
-        print("Total deaths: [" + str(self.totalDead) + "]\n")
-        print("Average cleared rooms: [" + str(round(self.totalRooms / self.totalRuns)) + "]\n")
-        print("Average killed monsters: [" + str(round(self.totalEnemies / self.totalRuns)) + "]\n")
-        print("Average found treasures: [" + str(round(self.treasure_saved / self.totalRuns)) + "]\n")
-        input("Press any key to return to the previous screen.")
+        if self.totalRuns == 0:
+            print("No runs recorded")
+            input("Press any key to return to the previous screen.")
+        else:
+            print("Total runs: ["+str(self.totalRuns)+"]\n")
+            print("Runs completed: [" + str(self.totalFinished) + "]\n")
+            print("Total deaths: [" + str(self.totalDead) + "]\n")
+            print("Average cleared rooms: [" + str(round(self.totalRooms / self.totalRuns)) + "]\n")
+            print("Average killed monsters: [" + str(round(self.totalEnemies / self.totalRuns)) + "]\n")
+            print("Average found treasures: [" + str(round(self.treasure_saved / self.totalRuns)) + "]\n")
+            input("Press any key to return to the previous screen.")
 
     def printAITmultiStat(self):
         print("You are done with" + str(self.multiRuns) + " run(s) with the AI-Thief class.\nThe statistics are:\n")
