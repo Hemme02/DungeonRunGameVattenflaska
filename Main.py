@@ -392,6 +392,7 @@ def finish_dungeon():
             treasure_found += items.gold
         print("You managed to get out of the dungeon.\nYou are carrying "+ str(treasure_found)+" gold with you")
         newGame.active_character.earn_treasure()
+        newGame.active_character.endurance = newGame.active_character.max_endurance
         newGame.save_characters()
 
         print("Your total wealth are now "+ str(newGame.active_character.treasure_saved)+" gold!")
@@ -415,8 +416,6 @@ def finish_dungeon():
 currentCharacters, deadCharacters, aiCharacters = load_game_characters()
 newGame = Game(currentCharacters, deadCharacters, aiCharacters)
 welcomeMenu()
-#TODO behövs de nedre av de här?
-size = mapSize()
-Map(size,startPosition(size),None,newGame.active_character)
+
 
 

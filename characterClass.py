@@ -7,7 +7,7 @@ class Character:
         self.endurance = endurance_
         self.attack = attack_
         self.agility = agility_
-
+        self.max_endurance = endurance_
 
 
     def __str__(self):
