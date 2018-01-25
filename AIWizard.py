@@ -115,12 +115,12 @@ class AIWizard(Character):
 
 
     def printAIWmultiStat(self):
-        print("You are done with" + str(self.multiRuns) + " run(s) with the AI-Wizard class.\nThe statistics are:\n")
+        print("You are done with " + str(self.multiRuns) + " run(s) with the AI-Wizard class.\nThe statistics are:\n")
         print("It completed the dungeon " + str(self.multiFinished) + " times.\n")
         if self.multiDead > 0:
             print("The AI died " + str(self.multiDead) + " time(s) during the runs.\n")
         print("The average amount of visited rooms are: " + str(round(self.multiRooms / self.multiRuns)) + "\n")
-        print("The average amount of killed monsters during the runs are " + str(round(self.multiEnemies / self.multiRuns)) + "\n")
+        print("The average amount of killed monsters during the runs are: " + str(round(self.multiEnemies / self.multiRuns)) + "\n")
         print("The average amount of treasures gathered during the runs: " + str(round(self.multiTreasures / self.multiRuns)) + "\n\n")
         input("All data will be saved in the database, press any key to return to the startscreen!")
         self.resetMulti()
