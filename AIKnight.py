@@ -80,7 +80,7 @@ class AIKnight(Character):
         self.treasure_saved += self.multiTreasures
 
     def print_single_run(self):
-        print("Run statistics for AI-Thief: \n")
+        print("Run statistics for AI-Knight: \n")
         finshed = True
         if self.aiDead == 1:
             finshed = False
