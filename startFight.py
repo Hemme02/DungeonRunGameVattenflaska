@@ -52,26 +52,51 @@ def startFight(player, monsters, map):
             return False
 
     def player_combat_action(player, list_of_monsters):
-        while True:
-            print("Chose your action: ")
+        if player.AI:
+            enemies_to_attack = list_of_monsters[0]
+            enemy_number = 0
             for i in range(0, len(list_of_monsters)):
-                print(str(i + 1) + ": Attack " + list_of_monsters[i].name)
-            print("0, Escape to previous room")
-
-            try:
-                action_input = int(input())
-                break
-            except ValueError:
-                print("Wrong choice!")
-                continue
-        while True:
-            if action_input == 0:
-               return "flee"
-            elif action_input <= len(list_of_monsters):
-                player_attack(player, list_of_monsters[action_input - 1])
+                if list_of_monsters[i].endurance < enemies_to_attack.endurance:
+                    enemies_to_attack = list_of_monsters[i]
+                    enemy_number = i
+            if current_map.times_fleed > 25:
+                player_attack(player, list_of_monsters[enemy_number])
                 return "attack"
+
+            if player.endurance == 1:
+                return "flee"
+            elif player.endurance <= 2:
+                if len(list_of_monsters) < 2:
+                    player_attack(player, list_of_monsters[enemy_number])
+                    return "attack"
+                else:
+                    return "flee"
             else:
-                print("Must enter a valid input")
+                player_attack(player, list_of_monsters[enemy_number])
+                return "attack"
+        else:
+            while True:
+                print("Chose your action: ")
+                for i in range(0, len(list_of_monsters)):
+                    print(str(i + 1) + ": Attack " + list_of_monsters[i].name)
+                print("0, Escape to previous room")
+
+                try:
+                    action_input = int(input())
+                    break
+                except ValueError:
+                    print("Wrong choice!")
+                    continue
+            while True:
+                if action_input == 0:
+                   return "flee"
+                elif action_input <= len(list_of_monsters):
+                    player_attack(player, list_of_monsters[action_input - 1])
+                    return "attack"
+                else:
+                    print("Must enter a valid input")
+                    #TODO wrong input bug
+                    break
 
     def player_attack(player, target):
         player_atk = dice_throw(player.attack)
@@ -89,7 +114,8 @@ def startFight(player, monsters, map):
 
         else:
             print("You missed")
-        time.sleep(1)
+        if not player.doing_multiple_runs:
+            time.sleep(1)
 
 
     def monster_attack(fighter, target):
@@ -108,8 +134,8 @@ def startFight(player, monsters, map):
                     current_map.playerDeath()
         else:
             print(target.name + " missed!")
-
-        time.sleep(1)
+        if not fighter.doing_multiple_runs:
+            time.sleep(1)
 
 
     list_of_turn = (turn_taking(player, list_of_monsters))
@@ -123,7 +149,8 @@ def startFight(player, monsters, map):
         for i in range(len(list_of_turn)):
             print(str(i+1) +":   "+ list_of_turn[i][0].name + ", Endurance left: "+ str(list_of_turn[i][0].endurance))
         print()
-        time.sleep(1)
+        if not player.doing_multiple_runs:
+            time.sleep(1)
         for creature in list_of_turn:
             if not active_player.IsAlive:
                 return list_of_monsters
